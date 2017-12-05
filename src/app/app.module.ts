@@ -3,21 +3,20 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation'; 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
-import { AuthService } from './service/auth.service';
 import { Routes , RouterModule } from '@angular/router'
 import { HttpModule } from '@angular/http';
 
-
-
-
+// Import Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './service/auth.service';
+import { AuthGuard } from './guards/auth-guard.service';
 
 const appRoutes: Routes = [
-  { path: 'signin',   component: LoginComponent },
+  { path: 'login',   component: LoginComponent },
   { path: 'home',     component: HomeComponent},
-  { path: '', redirectTo:'/signin' , pathMatch:'full' },
+  { path: '', redirectTo:'/login' , pathMatch:'full' },
 ];
 
 @NgModule({
@@ -35,7 +34,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule
     
   ],
-  providers: [AuthService],
+  providers: [AuthService,
+              AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

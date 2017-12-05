@@ -28,8 +28,9 @@
     "core-js": "^2.4.1",
     "ng-bootstrap": "^1.6.3",
     "ng-validation": "^1.0.6",
+    "ng2-responsive": "^0.8.4",
     "ng2-validation": "^4.2.0",
-    "rxjs": "^5.5.2",
+    "rxjs": "^5.5.3",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {

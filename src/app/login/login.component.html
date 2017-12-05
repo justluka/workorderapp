@@ -1,4 +1,4 @@
-
+<!--
 <div class="account-wall"> 
         <h1 class="text-center login-title">Work Order Tracking</h1><br>   
         <img class="profile-img" src="../../assets/images/nouser.png">  
@@ -26,7 +26,7 @@
             </form>
 
 </div>            
-<!--
+-->
 <div class="container">
     <div class="account-wall">  
        
@@ -35,7 +35,7 @@
        
         <form class="form-signin" name="form" (ngSubmit)="f.form.valid && login()"   #f="ngForm" novalidate>        
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !userName.valid }">
-                <label for="inputUser" class="sr-only">User Name</label>                
+                <label for="userName" class="sr-only">User Name</label>                
                 <input type="text" class="form-control" name="userName" [(ngModel)]="model.userName" #userName="ngModel" placeholder="User Name" required autofocus>
                 <div *ngIf="f.submitted && !userName.valid" class="help-block">Username is required</div>
             </div>
@@ -54,7 +54,7 @@
     </div>          
  
 </div> 
--->
+
 <!--
 
 <div class="container">

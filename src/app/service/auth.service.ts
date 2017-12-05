@@ -1,12 +1,9 @@
-import { HttpHeaders } from '@angular/common/http';
-import {Injectable } from '@angular/core'
-import {Http , Headers  } from '@angular/http'
-import {Router} from '@angular/router'
-import { URLSearchParams } from "@angular/http"
-
-
-import { Observable } from 'rxjs/RX'
+import {Injectable } from '@angular/core';
+import {Http , Headers, RequestOptions , Response } from '@angular/http';
+import {Router} from '@angular/router';
 import 'rxjs/add/operator/map';
+import { user } from '../models/user';
+
 
 interface User {
     userName: string; 
@@ -19,34 +16,39 @@ export class AuthService{
 
     public serverurl = 'http://localhost:7777/'
     public isloggedin:boolean;
+    
 
     constructor(private http : Http ,private router:Router){
 
     }
 
-    signin(user:User) : Observable<any>{
-        //let headers = new Headers();
-       // headers.append('Content-Type', 'application/json');
-       // let options = new RequestOptions({ headers: headers });
+    
 
-       let data = new URLSearchParams();
-       data.append('userName', 'llittles');
-       data.append('password', '123');
-        return this.http.post(this.serverurl+'api/authenticate',data ).map(data => {
-            data= data.json()
-            return data
-        })
+    login (userName: string, password:string) {
+       let headers = new Headers({'Content-Type': 'application/json'});        
+       let options = new RequestOptions({ headers: headers });
+
+       
+        return this.http.post(this.serverurl+'api/authenticate',JSON.stringify({userName:'llittles',password:'123'}),options )
+        .map((response: Response) => {
+            let userInfo : user = new user();
+            let result = response.json();
+
+            userInfo.userName = result.user.userName;
+            userInfo.token = result.token;
+            console.log(userInfo.userName);
+
+            if(userInfo && userInfo.token){
+                sessionStorage.setItem('currentUser', JSON.stringify(userInfo.userName));
+                sessionStorage.setItem('token', JSON.stringify(userInfo.token));
+            }
+            return userInfo;    
+        });
     }
 
-    signup(user:User) : Observable<any>{
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        let options = new RequestOptions({ headers: headers });
 
-        return this.http.post(this.serverurl+'auth/signup', user , options).map(data=> data.json())
-    }
-
-    signout(){
-        localStorage.removeItem('token')
+    logout(){
+        sessionStorage.removeItem('currentUser')
+        sessionStorage.removeItem('token')
     }
 }
