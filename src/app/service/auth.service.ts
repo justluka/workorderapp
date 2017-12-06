@@ -29,15 +29,16 @@ export class AuthService{
        let options = new RequestOptions({ headers: headers });
 
        
-        return this.http.post(this.serverurl+'api/authenticate',JSON.stringify({userName:'llittles',password:'123'}),options )
+        return this.http.post(this.serverurl+'api/authenticate',JSON.stringify({userName: userName,password: password}),options )
         .map((response: Response) => {
             let userInfo : user = new user();
             let result = response.json();
 
-            userInfo.userName = result.user.userName;
-            userInfo.token = result.token;
-            console.log(userInfo.userName);
-
+            if(result.user){
+                userInfo.userName = result.user.userName;
+                userInfo.token = result.token;
+            }
+            
             if(userInfo && userInfo.token){
                 sessionStorage.setItem('currentUser', JSON.stringify(userInfo.userName));
                 sessionStorage.setItem('token', JSON.stringify(userInfo.token));

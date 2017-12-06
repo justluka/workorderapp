@@ -11,20 +11,26 @@ import {AuthService} from '../service/auth.service'
 })
 export class LoginComponent implements OnInit {
   model: any = {};
- 
+  isNotLogged = false;
   constructor(private authservice : AuthService , private router:Router ) { }
 
   ngOnInit() {
-          
+     // In case there is no logout
+     this.authservice.logout(); 
   }
 
-  login() {       
+  login() {    
         this.authservice.login(this.model.userName, this.model.password)
         .subscribe(userInfo=>{
           
           if(userInfo.token){            
             this.router.navigateByUrl('/home');
-            console.log(userInfo);
+            this.isNotLogged = false;
+            
+           }
+           else{
+             this.isNotLogged = true;
+             
            }
         })
     }
