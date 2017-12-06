@@ -8,30 +8,30 @@ import { HttpModule } from '@angular/http';
 
 // Import Components
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { AuthService } from './service/auth.service';
-import { AuthGuard } from './guards/auth-guard.service';
-
-const appRoutes: Routes = [
-  { path: 'login',   component: LoginComponent },
-  { path: 'home',     component: HomeComponent},
-  { path: '', redirectTo:'/login' , pathMatch:'full' },
-];
+import { AuthService } from './_services/auth.service';
+import { AuthGuard } from './_guards/auth-guard.service';
+import { LoginComponent } from './login/index';
+import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
+import { routing } from './app.routing';
+import { BsNavbarComponent } from './_layout/bs-navbar/bs-navbar.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    LoginComponent
-  ],
+ 
   imports: [
     BrowserModule,
     FormsModule,   
     HttpModule,    
     CustomFormsModule, 
-    RouterModule.forRoot(appRoutes),
-    ReactiveFormsModule
+    routing,
+    NgbModule.forRoot()
+    
+    
+  ],
+  declarations: [
+    AppComponent,    
+    LoginComponent,
+    AppLayoutComponent,
+    BsNavbarComponent
     
   ],
   providers: [AuthService,

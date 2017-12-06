@@ -1,30 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
-import {AuthService} from '../service/auth.service'
+import { Router, ActivatedRoute } from '@angular/router'
+import {AuthService} from '../_services/auth.service'
+
 
 
 @Component({
   moduleId: module.id,
-  selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   model: any = {};
   isNotLogged = false;
-  constructor(private authservice : AuthService , private router:Router ) { }
+  returnUrl: string;
+
+  constructor(private authservice : AuthService , 
+              private router:Router, 
+              private route: ActivatedRoute  ) { }
 
   ngOnInit() {
      // In case there is no logout
      this.authservice.logout(); 
+     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home'
   }
 
   login() {    
         this.authservice.login(this.model.userName, this.model.password)
         .subscribe(userInfo=>{
           
-          if(userInfo.token){            
-            this.router.navigateByUrl('/home');
+          if(userInfo.token){  
+            console.log(this.returnUrl);          
+            this.router.navigate([this.returnUrl]);
             this.isNotLogged = false;
             
            }
