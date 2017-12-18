@@ -1,33 +1,51 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" >
-  
+<div class="panel-group" id="accordion">
+    <div class="panel panel-primary">
+      
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+            </span> &nbsp;Manage</a>
+        </h4>
+      </div>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <h1>Work Order Tracking </h1>
-      </li>
-      <!-->
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+      <div id="collapseOne" class="panel-collapse collapse in">
+        <ul class="list-group">
+            <li class="list-group-item"><span class="glyphicon glyphicon-file text-info"></span><a href="#">&nbsp;Work Orders</a></li>                  
+            <li class="list-group-item"><span class="glyphicon glyphicon-flash text-info"></span><a href="#">&nbsp;Tracking Work Order</a></li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-stats text-info"></span><a href="#">&nbsp;Dashboard</a></li>
+                                                   
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="panel panel-primary">
+        
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-user">
+              </span> &nbsp;Admin</a>
+          </h4>
         </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>-->
 
-    </ul>
-    <div class="form-inline my-2 my-lg-0">
-        <span class="glyphicon glyphicon-search"></span>Logout</div>
-    
+        <div id="collapseOne" class="panel-collapse collapse in">
+          <ul class="list-group">
+              <li class="list-group-item"><a href="#">&nbsp;Categories</a></li>                    
+              <li class="list-group-item"><a href="#">&nbsp;Status</a></li>
+              <li class="list-group-item"><a href="#">&nbsp;Users</a></li>                                                                            
+              <li class="list-group-item"><a href="#">&nbsp;Roles</a></li>                                                   
+          </ul>
+        </div>
+      </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-file">
+            </span>Reports</a>
+        </h4>
+      </div>
+     
+    </div>
+   
   </div>
-</nav>
