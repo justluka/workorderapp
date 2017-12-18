@@ -1,22 +1,36 @@
 <div class="container-fluid">
         
         <div class="row">
-            <div class="col-md-10">
-                    <div class="panel panel-default">
-                            <div class="panel-body">
-                                <h1>Work Order Tracking</h1>
-                            </div>
-                    </div>
-            </div>
-            <div class="col-md-2">
-                    <div class="panel panel-default">
-                            <div class="panel-body">
-                                <span>User Name : Luis Littles</span> <br>
-                                <span>Logout</span> 
+            <div class="col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-body panel-primary">
 
-                            </div>
+
+                                <table width="100%">
+                                        <tr>
+                                                <td style="text-align: left">
+                                                                <h1>Work Order Tracking</h1>
+             
+                                                </td>
+                                                <td style="text-align: right"> 
+                                                                <span>User: {{userName}}</span> 
+                                                                <button type="button" class="btn btn-info btn-sm">
+                                                                                <span class="glyphicon glyphicon-log-out"></span> Log out
+                                                                        </button>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                               <td  colspan="2" style="text-align:right">
+                                                        
+                                               </td>
+                                        </tr>
+                                </table>    
+
+
+                        </div>
                     </div>
             </div>
+           
         </div>
 
         <div class="row">
@@ -32,15 +46,10 @@
               <div class="panel-body">
                     <router-outlet></router-outlet>
               </div>
+              
             </div>
           </div>
         </div>
-<<<<<<< HEAD
-      </div>
-     
-
-=======
->>>>>>> ed664db5942180917ec2907e9aed29cc8ed9506f
 </div>
 
 
