@@ -8,12 +8,13 @@ import { user } from '../../_models/user';
   styleUrls: ['./app-layout.component.css']
 })
 export class AppLayoutComponent implements OnInit {
-  
+  userInfo : user = new user();
   construtor() { }
-  userName : string = sessionStorage.getItem('currentUser');
-
+  
   ngOnInit() {
-    let userName : string;
+    this.userInfo.userName = sessionStorage.getItem('currentUser');
+    this.userInfo.role=sessionStorage.getItem('RoleID');
+    this.userInfo.isAdmin= (sessionStorage.getItem('RoleID')=='1')?false:false;
 
   }
 

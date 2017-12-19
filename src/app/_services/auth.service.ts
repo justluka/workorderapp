@@ -37,11 +37,13 @@ export class AuthService{
             if(result.user){
                 userInfo.userName = result.user.userName;
                 userInfo.token = result.token;
+                userInfo.role  = result.user.RoleID;
             }
             
             if(userInfo && userInfo.token){
-                sessionStorage.setItem('currentUser', JSON.stringify(userInfo.userName));
-                sessionStorage.setItem('token', JSON.stringify(userInfo.token));
+                sessionStorage.setItem('currentUser', userInfo.userName);
+                sessionStorage.setItem('RoleID', userInfo.role);
+                sessionStorage.setItem('token', userInfo.token);
             }
             return userInfo;    
         });
