@@ -1,6 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { user } from '../../_models/user';
+
 
 
 @Component({
@@ -14,7 +15,9 @@ export class BsNavbarComponent implements OnInit {
 
   constructor(route:ActivatedRoute) {
     route.queryParamMap.subscribe(params=>{
-      this.page = params.get('page')
+      this.page = params.get('page');      
+      sessionStorage.setItem('page', this.page);
+
     })
 
    }

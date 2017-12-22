@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { user } from '../../_models/user';
-import { ActivatedRoute } from '@angular/router/src/router_state';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -10,7 +10,13 @@ import { ActivatedRoute } from '@angular/router/src/router_state';
 })
 export class AppLayoutComponent implements OnInit {
   userInfo : user = new user();
-  construtor() { 
+  page : string;
+  construtor(route:ActivatedRoute) { 
+
+    route.queryParamMap.subscribe(params=>{
+      this.page = params.get('page');      
+    })
+
   }
   
   ngOnInit() {
