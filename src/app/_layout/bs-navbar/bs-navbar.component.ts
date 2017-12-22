@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { user } from '../../_models/user';
 
@@ -9,8 +10,14 @@ import { user } from '../../_models/user';
 })
 export class BsNavbarComponent implements OnInit {
   userInfo : user = new user();
+  page: string;
 
-  constructor() { }
+  constructor(route:ActivatedRoute) {
+    route.queryParamMap.subscribe(params=>{
+      this.page = params.get('page')
+    })
+
+   }
 
   ngOnInit() {
     this.userInfo.userName = sessionStorage.getItem('currentUser');

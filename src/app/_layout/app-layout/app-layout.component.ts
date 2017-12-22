@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { user } from '../../_models/user';
+import { ActivatedRoute } from '@angular/router/src/router_state';
 
 
 @Component({
@@ -9,7 +10,8 @@ import { user } from '../../_models/user';
 })
 export class AppLayoutComponent implements OnInit {
   userInfo : user = new user();
-  construtor() { }
+  construtor() { 
+  }
   
   ngOnInit() {
     this.userInfo.userName = sessionStorage.getItem('currentUser');
