@@ -25,7 +25,7 @@ export class BsNavbarComponent implements OnInit {
     this.userInfo.userName = sessionStorage.getItem('currentUser');
     this.userInfo.role=sessionStorage.getItem('RoleID');
     this.userInfo.isAdmin= (sessionStorage.getItem('RoleID')=='1')?true:false;
-    this.page =  "home";
+   // this.page =  "home";
   }
 
   changePageName(pageName){

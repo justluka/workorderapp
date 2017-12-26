@@ -15,6 +15,8 @@ const appRoutes: Routes = [
         canActivate:[AuthGuard],
         children: [
           { path: 'home', loadChildren: './home/home.module#HomeModule', pathMatch: 'full'},
+          { path: 'workorder', loadChildren: './workorder/workorder.module#WorkorderModule', pathMatch: 'full'}
+         
                     
         ]
     },

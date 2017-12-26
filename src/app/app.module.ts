@@ -5,6 +5,7 @@ import { CustomFormsModule } from 'ng2-validation';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
 import { Routes , RouterModule } from '@angular/router'
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http'
 
 // Import Components
 import { AppComponent } from './app.component';
@@ -32,6 +33,7 @@ import { BsNavbarComponent } from './_layout/bs-navbar/bs-navbar.component';
     LoginComponent,
     AppLayoutComponent,
     BsNavbarComponent
+    
     
   ],
   providers: [AuthService,
