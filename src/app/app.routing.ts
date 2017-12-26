@@ -23,7 +23,7 @@ const appRoutes: Routes = [
      { path: 'login', component: LoginComponent,  pathMatch: 'full'},    
 
      //otherwise
-     { path: '**', redirectTo: '' }
+     { path: '**', redirectTo: 'home' }
 ];
  
 export const routing = RouterModule.forRoot(appRoutes);

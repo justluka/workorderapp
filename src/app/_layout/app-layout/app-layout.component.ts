@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { user } from '../../_models/user';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import {AuthService} from '../../_services/auth.service'
 
 
 @Component({
@@ -11,9 +12,11 @@ import { ActivatedRoute } from '@angular/router';
 export class AppLayoutComponent implements OnInit {
   userInfo : user = new user();
   page : string;
-  construtor(route:ActivatedRoute) { 
-
+  construtor(route:ActivatedRoute, authservice: AuthService,router: Router) { 
+    
     route.queryParamMap.subscribe(params=>{
+      if(params.get('page'))
+        this.page ="home"; 
       this.page = params.get('page');      
     })
 
@@ -26,4 +29,13 @@ export class AppLayoutComponent implements OnInit {
 
   }
 
+  pageName($event){
+    this.page=$event;
+  }  
+
+  logout(){
+    sessionStorage.removeItem('currentUser');
+    sessionStorage.removeItem('token');
+
+  }
 }

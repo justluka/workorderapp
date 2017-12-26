@@ -11,15 +11,15 @@
 
       <div id="collapseOne" class="panel-collapse collapse in">
         <div class="list-group">
-            <a routerLink="/WorkOrder" [queryParams]="{page: 'WorkOrder' }" [class.active]="page==='WorkOrder'"  class="list-group-item list-group-item-action">
+            <a (click)="changePageName('Work Orders')"  routerLink="/WorkOrder" [queryParams]="{page: 'WorkOrder' }" [class.active]="page==='WorkOrder'"  class="list-group-item list-group-item-action" >
               <span class="glyphicon glyphicon-file text-info"></span>
               Work Orders
             </a>                  
-            <a routerLink="/TWO" [queryParams]="{page: 'TWO' }" [class.active]="page==='TWO'"  class="list-group-item list-group-item-action">
+            <a (click)="changePageName('Tracking Work Order')"  routerLink="/TWO" [queryParams]="{page: 'TWO' }" [class.active]="page==='TWO'"  class="list-group-item list-group-item-action">
               <span class="glyphicon glyphicon-flash text-info"></span>
               Tracking Work Order
             </a>
-            <a routerLink="/home" [queryParams]="{page: 'home' }" [class.active]="page==='home'"  class="list-group-item list-group-item-action">
+            <a (click)="changePageName('Dashboard')"  routerLink="/home" [queryParams]="{page: 'home' }" [class.active]="page==='home'"  class="list-group-item list-group-item-action">
               <span class="glyphicon glyphicon-stats text-info"></span>
               Dashboard
             </a>
@@ -40,16 +40,16 @@
 
         <div id="collapseOne" class="panel-collapse collapse in">
           <div class="list-group">
-              <a routerLink="/Categories" [queryParams]="{page: 'Categories' }" [class.active]="page==='Categories'"  class="list-group-item list-group-item-action">
+              <a (click)="changePageName('Categories')"  routerLink="/Categories" [queryParams]="{page: 'Categories' }" [class.active]="page==='Categories'"  class="list-group-item list-group-item-action">
                 Categories
               </a>                    
-              <a routerLink="/Status" [queryParams]="{page: 'Status' }" [class.active]="page==='Status'"  class="list-group-item list-group-item-action">
+              <a (click)="changePageName('Status')"  routerLink="/Status" [queryParams]="{page: 'Status' }" [class.active]="page==='Status'"  class="list-group-item list-group-item-action">
                 Status
               </a>
-              <a routerLink="/Users" [queryParams]="{page: 'Users' }" [class.active]="page==='Users'"  class="list-group-item list-group-item-action">
+              <a (click)="changePageName('Users')"  routerLink="/Users" [queryParams]="{page: 'Users' }" [class.active]="page==='Users'"  class="list-group-item list-group-item-action">
                 &nbsp;Users
               </a>                                                                            
-              <a routerLink="/Roles" [queryParams]="{page: 'Roles' }" [class.active]="page==='Roles'"  class="list-group-item list-group-item-action">
+              <a (click)="changePageName('Roles')"  routerLink="/Roles" [queryParams]="{page: 'Roles' }" [class.active]="page==='Roles'"  class="list-group-item list-group-item-action">
                 &nbsp;Roles
               </a>                                                   
           </div>
@@ -68,10 +68,10 @@
         
         <div id="collapseOne" class="panel-collapse collapse in">
             <div class="list-group">
-                <a routerLink="/byCategories" [queryParams]="{page: 'byCategories' }" [class.active]="page==='byCategories'"  class="list-group-item list-group-item-action">
+                <a (click)="changePageName('Report - Work Order by Category')"  routerLink="/byCategories" [queryParams]="{page: 'byCategories' }" [class.active]="page==='byCategories'"  class="list-group-item list-group-item-action">
                   &nbsp;by Category
                 </a>                    
-                <a routerLink="/byStatus" [queryParams]="{page: 'byStatus' }" [class.active]="page==='byStatus'"  class="list-group-item list-group-item-action">
+                <a (click)="changePageName('Report - Work Order by Status')"  routerLink="/byStatus" [queryParams]="{page: 'byStatus' }" [class.active]="page==='byStatus'"  class="list-group-item list-group-item-action">
                   &nbsp;by Status
                 </a>
                                                                 
