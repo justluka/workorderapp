@@ -8,8 +8,7 @@ import { WorkOrderService } from './../_services/workorder.service';
 })
 export class WorkorderComponent implements OnInit {
   lstWorkOrder$;
- @Input() data: any ={};
-
+  p: number=1;
   constructor(private WorkOrderService: WorkOrderService) {
 
    
@@ -21,8 +20,8 @@ export class WorkorderComponent implements OnInit {
 
   getData(){
      this.WorkOrderService.getAllWorkOrders().subscribe(data=>{
+      console.log(this.data);
       this.lstWorkOrder$ =data.response;
-      console.log(this.data.response);
      });
 
   }

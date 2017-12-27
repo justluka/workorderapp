@@ -6,6 +6,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Routes , RouterModule } from '@angular/router'
 import { HttpModule } from '@angular/http';
 import { CommonModule} from '@angular/common';
+import {NgxPaginationModule} from 'ngx-pagination';
+
 
 
 // Import Components
@@ -26,6 +28,7 @@ import { WorkOrderService } from './_services/workorder.service';
     FormsModule,   
     HttpModule,    
     CustomFormsModule, 
+    NgxPaginationModule,
     routing,
     NgbModule.forRoot()
     

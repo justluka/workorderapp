@@ -1,19 +1,37 @@
 
-<table class="table table-hover  table-striped">
-  <thead >
-    <tr>
+<div style="text-align:right">
+    <button type="button"  routerLink="/addWorkOrder"  class="btn btn-primary btn-sm">
+      <span class="glyphicon glyphicon-plus"></span> Add New
+    </button>
+</div> 
+
+<br>
+
+<table class="table table-hover   table-condensed table-sortable">
+  <thead class="thead-dark" >
+    <tr class="bg-info">
+      <th >#</th>
+      <th>Category</th>
       <th>Description</th>
       <th>Notes</th>
+      <th>Status</th>
       <th></th>
     </tr>
   </thead> 
   <tbody>
-    <tr *ngFor="let workorder of lstWorkOrder$">
+    <tr *ngFor="let workorder of lstWorkOrder$ | paginate: { itemsPerPage: 2, currentPage: p }">
+      <td>{{ workorder.WorkOrderID }}</td>
+      <td>{{ workorder.Category }}</td>
       <td>{{ workorder.Description }}</td>
       <td>{{ workorder.Notes}}</td>
+      <td>{{ workorder.Status}}</td>
       <td>
-        <a href="#">View</a>
+        <a href="#">View Complete</a>
       </td>
+    </tr>
+    <tr>
+      <td colspan="6"><pagination-controls (pageChange)="p = $event"></pagination-controls></td>
     </tr>
   </tbody> 
 </table>
+
