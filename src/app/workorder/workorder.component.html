@@ -1,3 +1,19 @@
-<p>
-  workorder workssssssssssss!
-</p>
+
+<table class="table table-hover  table-striped">
+  <thead >
+    <tr>
+      <th>Description</th>
+      <th>Notes</th>
+      <th></th>
+    </tr>
+  </thead> 
+  <tbody>
+    <tr *ngFor="let workorder of lstWorkOrder$">
+      <td>{{ workorder.Description }}</td>
+      <td>{{ workorder.Notes}}</td>
+      <td>
+        <a href="#">View</a>
+      </td>
+    </tr>
+  </tbody> 
+</table>

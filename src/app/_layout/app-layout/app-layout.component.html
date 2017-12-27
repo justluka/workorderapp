@@ -41,7 +41,7 @@
           <div class="col-sm-10 col-md-10">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title" *ngIf="page; else default">{{page}}</h3>
+                <span class="title" *ngIf="page; else default">{{page}}</span>
                 <ng-template #default>
                         <h3 class="panel-title" >Dashboard</h3>
                 </ng-template>

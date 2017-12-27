@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { WorkOrderService } from './../_services/workorder.service';
-import {HttpClientModule, HttpClient} from '@angular/common/http';
 
 @Component({
   moduleId : module.id,
@@ -9,15 +8,22 @@ import {HttpClientModule, HttpClient} from '@angular/common/http';
 })
 export class WorkorderComponent implements OnInit {
   lstWorkOrder$;
+ @Input() data: any ={};
 
   constructor(private WorkOrderService: WorkOrderService) {
-    this.WorkOrderService.getAllWorkOrders().subscribe((res)=>{
-      this.lstWorkOrder$= res;
-    })
 
+   
    }
 
   ngOnInit() {
+    this.getData();
   }
 
+  getData(){
+     this.WorkOrderService.getAllWorkOrders().subscribe(data=>{
+      this.lstWorkOrder$ =data.response;
+      console.log(this.data.response);
+     });
+
+  }
 }

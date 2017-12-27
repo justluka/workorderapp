@@ -33,7 +33,7 @@ export class AuthService{
         .map((response: Response) => {
             let userInfo : user = new user();
             let result = response.json();
-
+            
             if(result.user){
                 userInfo.userName = result.user.userName;
                 userInfo.token = result.token;

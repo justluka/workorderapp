@@ -5,7 +5,8 @@ import { CustomFormsModule } from 'ng2-validation';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
 import { Routes , RouterModule } from '@angular/router'
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http'
+import { CommonModule} from '@angular/common';
+
 
 // Import Components
 import { AppComponent } from './app.component';
@@ -15,11 +16,13 @@ import { LoginComponent } from './login/index';
 import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 import { routing } from './app.routing';
 import { BsNavbarComponent } from './_layout/bs-navbar/bs-navbar.component';
+import { WorkOrderService } from './_services/workorder.service';
 
 @NgModule({
  
   imports: [
     BrowserModule,
+    CommonModule,
     FormsModule,   
     HttpModule,    
     CustomFormsModule, 
@@ -37,7 +40,7 @@ import { BsNavbarComponent } from './_layout/bs-navbar/bs-navbar.component';
     
   ],
   providers: [AuthService,
-              AuthGuard],
+              AuthGuard, WorkOrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

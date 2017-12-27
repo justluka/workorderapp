@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
  
 // containers
 import { WorkorderComponent } from './workorder.component';
+import { CommonModule } from '@angular/common';
  
 // routes
 export const ROUTES: Routes = [
@@ -11,7 +12,8 @@ export const ROUTES: Routes = [
  
 @NgModule({
   imports: [
-    RouterModule.forChild(ROUTES)
+    RouterModule.forChild(ROUTES),
+    CommonModule
   ],
   declarations: [
     WorkorderComponent
