@@ -42,10 +42,18 @@
   <div class="row"  >
       <div class="form-group col-md-8">
           <label for="category">Document</label><br>
-          
-            <label class="btn btn-default">
-                Browse <input type="file" hidden>
-            </label>
+    	<div class="input-group file-preview">
+						<input placeholder="" type="text" class="form-control file-preview-filename" disabled="disabled">
+						<!-- don't give a name === doesn't send on POST/GET --> 
+						<span class="input-group-btn"> 
+						<!-- file-preview-clear button -->
+						<button type="button" class="btn btn-default file-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
+						<!-- file-preview-input -->
+						<div class="btn btn-default file-preview-input"> <span class="glyphicon glyphicon-folder-open"></span> <span class="file-preview-input-title">Browse</span>
+							<input type="file" accept="text/cfg" name="input-file-preview"/>
+							<!-- rename it --> 
+						</div>
+						</span> </div>
           <small id="passwordHelpInline" class="text-muted">
               Must be a pdf.
             </small>
