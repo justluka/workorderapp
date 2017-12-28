@@ -74,7 +74,7 @@
                     bsDatepicker
                     [(bsValue)]="bsValue1">
             <div class="input-group-btn">
-              <button class="btn btn-primary" (click)="dpSigned.show() "><span class="glyphicon glyphicon-calendar"></span></button>
+              <button type="button" class="btn btn-primary" (click)="dpSigned.show() "><span class="glyphicon glyphicon-calendar"></span></button>
             </div>      
           </div>
         </div>
@@ -96,7 +96,7 @@
                     bsDatepicker 
                     [(bsValue)]="bsValue2">
             <div class="input-group-btn">
-              <button class="btn btn-primary" (click)="dpStarted.show() "><span class="glyphicon glyphicon-calendar"></span></button>
+              <button type="button" class="btn btn-primary" (click)="dpStarted.show() "><span class="glyphicon glyphicon-calendar"></span></button>
             </div>      
           </div>
         </div>
@@ -124,7 +124,7 @@
                   bsDatepicker 
                   [(bsValue)]="bsValue3">
           <div class="input-group-btn">
-            <button class="btn btn-primary" (click)="dpCompleted.toggle() "><span class="glyphicon glyphicon-calendar"></span></button>
+            <button type="button" class="btn btn-primary" (click)="dpCompleted.toggle() "><span class="glyphicon glyphicon-calendar"></span></button>
           </div>      
         </div>
       </div>
@@ -142,7 +142,7 @@
                   bsDatepicker 
                   [(bsValue)]="bsValue4">
           <div class="input-group-btn">
-            <button class="btn btn-primary" (click)="dpReleasedTest.toggle() "><span class="glyphicon glyphicon-calendar"></span></button>
+            <button type="button" class="btn btn-primary" (click)="dpReleasedTest.toggle() "><span class="glyphicon glyphicon-calendar"></span></button>
           </div>      
         </div>
       </div>
@@ -164,7 +164,7 @@
                     bsDatepicker 
                     [(bsValue)]="bsValue5">
             <div class="input-group-btn">
-              <button class="btn btn-primary" (click)="dpReleasePro.show() "><span class="glyphicon glyphicon-calendar"></span></button>
+              <button type="button" class="btn btn-primary" (click)="dpReleasePro.show() "><span class="glyphicon glyphicon-calendar"></span></button>
             </div>      
           </div>
         </div>
@@ -192,7 +192,7 @@
               <input #ActualHours="ngModel" [(ngModel)]="workorder.ActualHours" name="ActualHours" id="ActualHours" type="number" class="form-control" required [min]="0">
             </div>
             <div class="alert alert-danger" *ngIf="ActualHours.touched && ActualHours.invalid">              
-              <div *ngIf="ActualHours.errors.min">Price should be 0 or higher.</div>
+              <div *ngIf="ActualHours.errors.min">Actual Hours should be 0 or higher.</div>
             </div>
           </div>        
     

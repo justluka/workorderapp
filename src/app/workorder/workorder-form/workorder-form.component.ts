@@ -19,8 +19,7 @@ export class WorkorderFormComponent implements OnInit {
   workorder ={};
   
   constructor(private CategoriesService: CategoriesService) {
-
-    
+   
    }
 
   ngOnInit() {
