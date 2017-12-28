@@ -20,7 +20,6 @@ export class WorkorderComponent implements OnInit {
 
   getData(){
      this.WorkOrderService.getAllWorkOrders().subscribe(data=>{
-      console.log(this.data);
       this.lstWorkOrder$ =data.response;
      });
 

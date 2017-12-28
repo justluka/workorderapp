@@ -21,7 +21,7 @@
   <tbody>
     <tr *ngFor="let workorder of lstWorkOrder$ | paginate: { itemsPerPage: 2, currentPage: p }">
       <td>{{ workorder.WorkOrderID }}</td>
-      <td>{{ workorder.Category }}</td>
+      <td></td>
       <td>{{ workorder.Description }}</td>
       <td>{{ workorder.Notes}}</td>
       <td>{{ workorder.Status}}</td>

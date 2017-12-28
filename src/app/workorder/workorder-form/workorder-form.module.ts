@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 // containers
 import { CommonModule } from '@angular/common';
 import { WorkorderFormComponent } from './workorder-form.component';
+import { BsDatepickerModule } from 'ngx-bootstrap';
 
 
 
@@ -18,7 +19,7 @@ export const ROUTES: Routes = [
   imports: [
     RouterModule.forChild(ROUTES),
     CommonModule,
-    FormsModule,
+    FormsModule,BsDatepickerModule.forRoot(),
     NgbModule
     
     
