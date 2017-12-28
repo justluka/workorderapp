@@ -1,3 +1,4 @@
+import { CategoriesService } from './_services/categories.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -43,7 +44,7 @@ import { WorkOrderService } from './_services/workorder.service';
     
   ],
   providers: [AuthService,
-              AuthGuard, WorkOrderService],
+              AuthGuard, WorkOrderService, CategoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

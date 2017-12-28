@@ -1,96 +1,217 @@
-
-<form #f="ngForm" (ngSubmit)="save(f.value)" class="form-margin ">
+<form #f="ngForm" (ngSubmit)="save(f.value)"  class="form-margin ">
+ 
   <div class="row"  >
     <div class="col-md-8">
-      <h3 class="title">General</h3>
+      <h3 class="title">Creating a new Work Order</h3>
       <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
     </div>  
   </div>  
   <br>
+
+  <!-- Category -->
+
   <div class="row"  >
       <div class="form-group col-md-8">
           <label for="category">Category</label>
 
-          <select #category="ngModel" [(ngModel)]="product.category" name="category" id="category" class="form-control" required>
-            <option value=""></option>
-            <option *ngFor="let c of categories$ | async" [value]="c.$key">
-              {{ c.name }}
+          <select #category="ngModel" [(ngModel)]="workorder.category" name="category" id="category" class="form-control" required>
+              <option [value]="selectUndefinedOptionValue" disabled hidden >Choose one ...</option>
+              <option *ngFor="let c of lstCategories$" [ngValue]="c.CategoryID">
+              {{ c.Category }}
             </option>
           </select>
 
           <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
             Category is required.
           </div>
-      </div>     
-
-        
+      </div>             
       
   </div>
+  <!--End  Category -->
 
+  <!-- Description -->
   <div class="row"  >
       <div class="form-group col-md-8">
-          <label for="category">Description</label>
+          <label for="description">Description</label>
 
-          <textarea #price="ngModel" [(ngModel)]="product.price" name="price" id="price"  rows="6"  class="form-control" ></textarea>
+          <textarea #description="ngModel" [(ngModel)]="workorder.description" name="description" id="description"  rows="6"  class="form-control" required></textarea>
 
-          <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
-            Category is required.
+          <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
+                Description is required.
           </div>
       </div>    
   </div>
-
+  <!-- End Description -->
+  
+  <!-- Document -->
   <div class="row"  >
       <div class="form-group col-md-8">
           <label for="category">Document</label><br>
-    	<div class="input-group file-preview">
-						<input placeholder="" type="text" class="form-control file-preview-filename" disabled="disabled">
-						<!-- don't give a name === doesn't send on POST/GET --> 
-						<span class="input-group-btn"> 
-						<!-- file-preview-clear button -->
-						<button type="button" class="btn btn-default file-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
-						<!-- file-preview-input -->
-						<div class="btn btn-default file-preview-input"> <span class="glyphicon glyphicon-folder-open"></span> <span class="file-preview-input-title">Browse</span>
-							<input type="file" accept="text/cfg" name="input-file-preview"/>
-							<!-- rename it --> 
-						</div>
-						</span> </div>
-          <small id="passwordHelpInline" class="text-muted">
-              Must be a pdf.
-            </small>
-          <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
-            Category is required.
-          </div>
+          <input type="file"  name="file"  class="form-control file-preview-filename btn-file" accept="application/pdf">
       </div>    
   </div>
+  <!-- End Document -->
+  
+
+  
   <br>
+
+  <!-- Signed Date, Started Date -->
+
   <div class="row"  >
-      <div class="col-md-8">
-        <h3 >Hours and Important Dates</h3>
-        <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
-      </div>  
-  </div>  
-    <br>
-
-<div class="row"  >
-  <div class="form-group col-md-4">
-      <label for="category">Started Date</label>
-      <div class="input-group">
-        <input type="text"
-                class="form-control"
-                [minDate]="minDate"
-                [maxDate]="maxDate"
-                #dp="bsDatepicker"
-                bsConfig="theme-blue"
-                bsDatepicker [(bsValue)]="bsValue">
-        <div class="input-group-btn">
-          <button class="btn btn-primary" (click)="dp.show() "><span class="glyphicon glyphicon-calendar"></span></button>
-        </div>      
-      </div>
+      <div class="form-group col-md-4">
+          <label for="SignedDate">Signed Date</label>
+          <div class="input-group">
+            <input type="text"
+                    #signedDate="ngModel" 
+                    [(ngModel)]="workorder.signedDate"
+                    name="signedDate"
+                    id="signedDate" 
+                    class="form-control"                
+                    #dpSigned="bsDatepicker"
+                    placeholder="mm/dd/yyyy"
+                    [bsConfig]="bsConfig"
+                    bsDatepicker
+                    [(bsValue)]="bsValue1">
+            <div class="input-group-btn">
+              <button class="btn btn-primary" (click)="dpSigned.show() "><span class="glyphicon glyphicon-calendar"></span></button>
+            </div>      
+          </div>
+        </div>
+    
+        <div class="form-group col-md-4">
+          <label for="StartedDate">Started Date</label>
+          <div class="input-group">
+            <input type="text"
+                    class="form-control"
+                    #startedDate="ngModel" 
+                    [(ngModel)]="workorder.startedDate"
+                    name="startedDate"
+                    id="startedDate" 
+                    [minDate]="minDate"
+                    [maxDate]="maxDate"
+                    #dpStarted="bsDatepicker"
+                    placeholder="mm/dd/yyyy"
+                    [bsConfig]="bsConfig"
+                    bsDatepicker 
+                    [(bsValue)]="bsValue2">
+            <div class="input-group-btn">
+              <button class="btn btn-primary" (click)="dpStarted.show() "><span class="glyphicon glyphicon-calendar"></span></button>
+            </div>      
+          </div>
+        </div>
     </div>
-</div>
+    
+  <!-- END Signed Date, Started Date -->
 
+  <!-- Date Completed, Released for testing, Released for Production -->
+  
+<div class="row"  >
+    <div class="form-group col-md-4">
+        <label for="CompletedDate">Date Completed</label>
+        <div class="input-group">
+          <input type="text"
+                  class="form-control"
+                  #CompletedDate="ngModel" 
+                  [(ngModel)]="workorder.completedDate"
+                  name="completedDate"
+                  id="completedDate" 
+                  [minDate]="minDate"
+                  [maxDate]="maxDate"
+                  #dpCompleted="bsDatepicker"
+                  placeholder="mm/dd/yyyy"
+                  [bsConfig]="bsConfig"
+                  bsDatepicker 
+                  [(bsValue)]="bsValue3">
+          <div class="input-group-btn">
+            <button class="btn btn-primary" (click)="dpCompleted.toggle() "><span class="glyphicon glyphicon-calendar"></span></button>
+          </div>      
+        </div>
+      </div>
+  
+      <div class="form-group col-md-4">
+        <label for="ReleasedTestingDate">Release Testing Date</label>
+        <div class="input-group">
+          <input type="text"
+                  class="form-control"                
+                  [minDate]="minDate"
+                  [maxDate]="maxDate"
+                  #dpReleasedTest="bsDatepicker"
+                  placeholder="mm/dd/yyyy"
+                  [bsConfig]="bsConfig"
+                  bsDatepicker 
+                  [(bsValue)]="bsValue4">
+          <div class="input-group-btn">
+            <button class="btn btn-primary" (click)="dpReleasedTest.toggle() "><span class="glyphicon glyphicon-calendar"></span></button>
+          </div>      
+        </div>
+      </div>
+  </div>
+
+  <div class="row"  >
+      <div class="form-group col-md-4">
+          <label for="ReleasedProductionDate">Release Production Date</label>
+          <div class="input-group">
+            <input type="text"
+                    class="form-control"
+                    #ReleasedProductionDate="ngModel" 
+                    [(ngModel)]="workorder.ReleasedProductionDate"
+                    name="ReleasedProductionDate"
+                    id="ReleasedProductionDate"                    
+                    #dpReleasePro="bsDatepicker"
+                    placeholder="mm/dd/yyyy"
+                    [bsConfig]="bsConfig"
+                    bsDatepicker 
+                    [(bsValue)]="bsValue5">
+            <div class="input-group-btn">
+              <button class="btn btn-primary" (click)="dpReleasePro.show() "><span class="glyphicon glyphicon-calendar"></span></button>
+            </div>      
+          </div>
+        </div>
+    
+    </div>
+  <!-- End Date Completed, Released for testing, Released for Production -->
+
+  <!-- Propoused Hours, actual Hours -->
+  <div class="row"  >
+      <div class="form-group  col-md-4">
+          <label for="PropouseHours">Propouse Hours</label>
+          <div class="input-group">
+            <span class="input-group-addon">Hours</span>
+            <input #PropouseHours="ngModel" [(ngModel)]="workorder.PropouseHours" name="PropouseHours" id="PropouseHours" type="number" class="form-control"  [min]="0">
+          </div>
+          <div class="alert alert-danger" *ngIf="PropouseHours.touched && PropouseHours.invalid">           
+            <div *ngIf="PropouseHours.errors.min">Propouse Hours should be 0 or higher.</div>
+          </div>
+        </div>        
+        
+        <div class="form-group  col-md-4">
+            <label for="ActualHours">Actual Hours</label>
+            <div class="input-group">
+              <span class="input-group-addon">Hours</span>
+              <input #ActualHours="ngModel" [(ngModel)]="workorder.ActualHours" name="ActualHours" id="ActualHours" type="number" class="form-control" required [min]="0">
+            </div>
+            <div class="alert alert-danger" *ngIf="ActualHours.touched && ActualHours.invalid">              
+              <div *ngIf="ActualHours.errors.min">Price should be 0 or higher.</div>
+            </div>
+          </div>        
+    
+  </div>
+  <!-- End Propoused Hours, actual Hours -->
+  <!-- Button to save -->
+  <div class="row"  >
+            
+    <div class="form-group  col-md-8" style="text-align:right">
+        <br>
+        <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+        <button class="btn btn-primary">Save</button>        
+    </div>
+  </div>  
+  
 </form>
 
+
+  <!-- /input-group image-preview [TO HERE]--> 
 <!--
 <div class="row">
   <div class="col-md-6">
