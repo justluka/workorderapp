@@ -1,3 +1,4 @@
+import { StatusService } from './_services/status.service';
 import { CategoriesService } from './_services/categories.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -44,7 +45,7 @@ import { WorkOrderService } from './_services/workorder.service';
     
   ],
   providers: [AuthService,
-              AuthGuard, WorkOrderService, CategoriesService],
+              AuthGuard, WorkOrderService, CategoriesService, StatusService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

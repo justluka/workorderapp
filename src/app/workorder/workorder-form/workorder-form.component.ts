@@ -1,4 +1,6 @@
 import { CategoriesService } from './../../_services/categories.service';
+import { StatusService } from './../../_services/status.service';
+import { WorkOrderService } from './../../_services/workorder.service';
 import { Component, OnInit } from '@angular/core';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { DatePipe } from '@angular/common';
@@ -17,20 +19,31 @@ export class WorkorderFormComponent implements OnInit {
   filesToUpload: Array<File>;
   
   lstCategories$;
+  lstStatus$;
   workorder ={};
    datePipe = new DatePipe("en-US");
-  constructor(private CategoriesService: CategoriesService) {
+  constructor(private CategoriesService: CategoriesService, 
+              private StatusService: StatusService,
+              private WorkOrderService: WorkOrderService) {
    
    }
 
   ngOnInit() {
     this.bsConfig = Object.assign({}, { containerClass: this.colorTheme});
     this.getCategories();
+    this.getStatus();
   }
 
   getCategories(){
-    this.CategoriesService.getAllCategories().subscribe(data=>{
-      this.lstCategories$ =data.response[0];      
+    this.CategoriesService.getAllCategories().subscribe(data=>{    
+      this.lstCategories$ =data.response[0];         
+     });
+     
+  }
+
+  getStatus(){
+    this.StatusService.getAllStatus().subscribe(data=>{
+      this.lstStatus$ =data.response[0];            
      });
      
   }
@@ -38,6 +51,14 @@ export class WorkorderFormComponent implements OnInit {
   save(workorder) { 
     workorder=this.formatDates(workorder);
     console.log(workorder);
+
+    this.WorkOrderService.saveWorkOrder(workorder)
+    .subscribe(success=>{
+      
+      console.log(success);
+    })
+
+
 
   }
 
@@ -47,7 +68,9 @@ export class WorkorderFormComponent implements OnInit {
     workorder.completedDate =this.datePipe.transform(workorder.completedDate,'yyyy-MM-dd');
     workorder.releasedTestDate =this.datePipe.transform(workorder.releasedTestDate,'yyyy-MM-dd');
     workorder.releasedProductionDate =this.datePipe.transform(workorder.releasedProductionDate,'yyyy-MM-dd');
-
+    workorder.document="";
+    workorder.notes="";
+    workorder.lastUpdateByUser=sessionStorage.getItem('currentUser');
     return workorder;
   }
   

@@ -7,7 +7,26 @@
     </div>  
   </div>  
   <br>
+  <!-- Status -->
+  <div class="row"  >
+    <div class="form-group col-md-8">
+        <label for="status">Status</label>
 
+        <select #status="ngModel" [(ngModel)]="workorder.status" name="status" id="status" class="form-control" required>
+            <option [value]="selectUndefinedOptionValue" disabled hidden >Choose one ...</option>
+            <option *ngFor="let c of lstStatus$" [ngValue]="c.StatusID">
+            {{ c.Status }}
+          </option>
+        </select>
+
+        <div class="alert alert-danger" *ngIf="status.touched && status.invalid">
+          Status for this workorder is required.
+        </div>
+    </div>             
+    
+  </div>
+  <!-- End Status -->
+ 
   <!-- Category -->
 
   <div class="row"  >
@@ -47,7 +66,10 @@
   <div class="row"  >
       <div class="form-group col-md-8">
           <label for="category">Document</label><br>
-          <input type="file"  name="file"  class="form-control file-preview-filename btn-file" accept="application/pdf">
+          <input type="file"  #document="ngModel" 
+                [(ngModel)]="workorder.document"
+                name="document" id="document"
+           class="form-control file-preview-filename btn-file" accept="application/pdf">
       </div>    
   </div>
   <!-- End Document -->
@@ -74,11 +96,7 @@
                     bsDatepicker
                     [(bsValue)]="bsValue1">
             <div class="input-group-btn">
-<<<<<<< HEAD
-              <button type="button" class="btn btn-primary" (click)="dpSigned.show() "><span class="glyphicon glyphicon-calendar"></span></button>
-=======
               <button  type="button" class="btn btn-primary" (click)="dpSigned.show() "><span class="glyphicon glyphicon-calendar"></span></button>
->>>>>>> 5726de4450fedc0d7504aeb39501f8f8d17e0708
             </div>      
           </div>
         </div>
@@ -177,28 +195,24 @@
   <!-- Propoused Hours, actual Hours -->
   <div class="row"  >
       <div class="form-group  col-md-4">
-          <label for="PropouseHours">Propouse Hours</label>
+          <label for="propouseHours">Propouse Hours</label>
           <div class="input-group">
             <span class="input-group-addon">Hours</span>
-            <input #PropouseHours="ngModel" [(ngModel)]="workorder.PropouseHours" name="PropouseHours" id="PropouseHours" type="number" class="form-control"  [min]="1">
+            <input #propouseHours="ngModel" [(ngModel)]="workorder.propouseHours" name="propouseHours" id="propouseHours" type="number" class="form-control"  [min]="1">
           </div>
-          <div class="alert alert-danger" *ngIf="PropouseHours.touched && PropouseHours.invalid">           
-            <div *ngIf="PropouseHours.errors.min">Propouse Hours should be 1 or higher.</div>
+          <div class="alert alert-danger" *ngIf="propouseHours.touched && propouseHours.invalid">           
+            <div *ngIf="propouseHours.errors.min">Propouse Hours should be 1 or higher.</div>
           </div>
         </div>        
         
         <div class="form-group  col-md-4">
-            <label for="ActualHours">Actual Hours</label>
+            <label for="actualHours">Actual Hours</label>
             <div class="input-group">
               <span class="input-group-addon">Hours</span>
-              <input #ActualHours="ngModel" [(ngModel)]="workorder.ActualHours" name="ActualHours" id="ActualHours" type="number" class="form-control" required [min]="1">
+              <input #actualHours="ngModel" [(ngModel)]="workorder.actualHours" name="actualHours" id="actualHours" type="number" class="form-control" required [min]="1">
             </div>
-            <div class="alert alert-danger" *ngIf="ActualHours.touched && ActualHours.invalid">              
-<<<<<<< HEAD
-              <div *ngIf="ActualHours.errors.min">Actual Hours should be 0 or higher.</div>
-=======
-              <div *ngIf="ActualHours.errors.min">Actual Hours should be 1 or higher.</div>
->>>>>>> 5726de4450fedc0d7504aeb39501f8f8d17e0708
+            <div class="alert alert-danger" *ngIf="actualHours.touched && actualHours.invalid">              
+              <div *ngIf="actualHours.errors.min">Actual Hours should be 1 or higher.</div>
             </div>
           </div>        
     
