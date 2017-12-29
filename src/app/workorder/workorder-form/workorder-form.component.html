@@ -74,7 +74,11 @@
                     bsDatepicker
                     [(bsValue)]="bsValue1">
             <div class="input-group-btn">
+<<<<<<< HEAD
               <button type="button" class="btn btn-primary" (click)="dpSigned.show() "><span class="glyphicon glyphicon-calendar"></span></button>
+=======
+              <button  type="button" class="btn btn-primary" (click)="dpSigned.show() "><span class="glyphicon glyphicon-calendar"></span></button>
+>>>>>>> 5726de4450fedc0d7504aeb39501f8f8d17e0708
             </div>      
           </div>
         </div>
@@ -85,11 +89,9 @@
             <input type="text"
                     class="form-control"
                     #startedDate="ngModel" 
-                    [(ngModel)]="workorder.startedDate"
+                    [ngModel]="workorder.startedDate"
                     name="startedDate"
                     id="startedDate" 
-                    [minDate]="minDate"
-                    [maxDate]="maxDate"
                     #dpStarted="bsDatepicker"
                     placeholder="mm/dd/yyyy"
                     [bsConfig]="bsConfig"
@@ -116,8 +118,6 @@
                   [(ngModel)]="workorder.completedDate"
                   name="completedDate"
                   id="completedDate" 
-                  [minDate]="minDate"
-                  [maxDate]="maxDate"
                   #dpCompleted="bsDatepicker"
                   placeholder="mm/dd/yyyy"
                   [bsConfig]="bsConfig"
@@ -133,9 +133,11 @@
         <label for="ReleasedTestingDate">Release Testing Date</label>
         <div class="input-group">
           <input type="text"
-                  class="form-control"                
-                  [minDate]="minDate"
-                  [maxDate]="maxDate"
+                  class="form-control"  
+                  #ReleasedTestDate="ngModel" 
+                  [(ngModel)]="workorder.releasedTestDate"
+                  name="releasedTestDate"
+                  id="releasedTestDate"               
                   #dpReleasedTest="bsDatepicker"
                   placeholder="mm/dd/yyyy"
                   [bsConfig]="bsConfig"
@@ -155,9 +157,9 @@
             <input type="text"
                     class="form-control"
                     #ReleasedProductionDate="ngModel" 
-                    [(ngModel)]="workorder.ReleasedProductionDate"
-                    name="ReleasedProductionDate"
-                    id="ReleasedProductionDate"                    
+                    [(ngModel)]="workorder.releasedProductionDate"
+                    name="releasedProductionDate"
+                    id="releasedProductionDate"                    
                     #dpReleasePro="bsDatepicker"
                     placeholder="mm/dd/yyyy"
                     [bsConfig]="bsConfig"
@@ -178,10 +180,10 @@
           <label for="PropouseHours">Propouse Hours</label>
           <div class="input-group">
             <span class="input-group-addon">Hours</span>
-            <input #PropouseHours="ngModel" [(ngModel)]="workorder.PropouseHours" name="PropouseHours" id="PropouseHours" type="number" class="form-control"  [min]="0">
+            <input #PropouseHours="ngModel" [(ngModel)]="workorder.PropouseHours" name="PropouseHours" id="PropouseHours" type="number" class="form-control"  [min]="1">
           </div>
           <div class="alert alert-danger" *ngIf="PropouseHours.touched && PropouseHours.invalid">           
-            <div *ngIf="PropouseHours.errors.min">Propouse Hours should be 0 or higher.</div>
+            <div *ngIf="PropouseHours.errors.min">Propouse Hours should be 1 or higher.</div>
           </div>
         </div>        
         
@@ -189,10 +191,14 @@
             <label for="ActualHours">Actual Hours</label>
             <div class="input-group">
               <span class="input-group-addon">Hours</span>
-              <input #ActualHours="ngModel" [(ngModel)]="workorder.ActualHours" name="ActualHours" id="ActualHours" type="number" class="form-control" required [min]="0">
+              <input #ActualHours="ngModel" [(ngModel)]="workorder.ActualHours" name="ActualHours" id="ActualHours" type="number" class="form-control" required [min]="1">
             </div>
             <div class="alert alert-danger" *ngIf="ActualHours.touched && ActualHours.invalid">              
+<<<<<<< HEAD
               <div *ngIf="ActualHours.errors.min">Actual Hours should be 0 or higher.</div>
+=======
+              <div *ngIf="ActualHours.errors.min">Actual Hours should be 1 or higher.</div>
+>>>>>>> 5726de4450fedc0d7504aeb39501f8f8d17e0708
             </div>
           </div>        
     
@@ -204,7 +210,7 @@
     <div class="form-group  col-md-8" style="text-align:right">
         <br>
         <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
-        <button class="btn btn-primary">Save</button>        
+        <button class="btn btn-primary" [disabled]="!f.valid">Save</button>        
     </div>
   </div>  
   
