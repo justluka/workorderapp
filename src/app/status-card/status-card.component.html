@@ -3,7 +3,7 @@
   <thead >
     <tr >
        <th >Status</th>
-       <th style="text-align: center">Total</th>
+       <th style="text-align: center"></th>
     </tr>
   </thead>   
   <tbody >
@@ -15,5 +15,20 @@
         </td>
   
       </tr>
+      <tr>
+        <td colspan="2" style="text-align: right; padding-right:35px">
+            Total : {{total}}
+        </td>
+      </tr>
   </tbody> 
 </table>
+
+<div style="display: block">
+  <canvas baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+</div>
+

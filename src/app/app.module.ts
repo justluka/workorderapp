@@ -9,7 +9,7 @@ import { Routes , RouterModule } from '@angular/router'
 import { HttpModule } from '@angular/http';
 import { CommonModule} from '@angular/common';
 import {NgxPaginationModule} from 'ngx-pagination';
-
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 
 // Import Components
@@ -35,6 +35,7 @@ import { UsersService } from './_services/users.service';
     CustomFormsModule, 
     NgxPaginationModule,
     routing,
+    ChartsModule,
     NgbModule.forRoot()
     
     

@@ -7,7 +7,11 @@ import { WorkOrderService } from './../_services/workorder.service';
   styleUrls: ['./status-card.component.css']
 })
 export class StatusCardComponent implements OnInit {
-  lstWorkOrderStatus$;
+  lstWorkOrderStatus$=[];
+  total:number=0;
+  public pieChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
+  public pieChartData:number[] = [300, 500, 100];
+  public pieChartType:string = 'pie'
 
   @Input('CategoryID') CategoryID:number;
 
@@ -18,7 +22,26 @@ export class StatusCardComponent implements OnInit {
   ngOnInit() {
     this.WorkOrderService.getWorkOrdersByCategory(this.CategoryID).subscribe(data=>{
       this.lstWorkOrderStatus$= data.response;
+
+      for(let item of this.lstWorkOrderStatus$){
+        console.log(item);
+        this.total = this.total + item.Total;
+     }  
+
      });
+   
+     
+  
+  }
+
+
+  // chart events
+  public chartClicked(e:any):void {
+    console.log(e);
+  }
+ 
+  public chartHovered(e:any):void {
+    console.log(e);
   }
 
 }
