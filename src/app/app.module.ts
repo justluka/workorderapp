@@ -17,10 +17,13 @@ import { AppComponent } from './app.component';
 import { AuthService } from './_services/auth.service';
 import { AuthGuard } from './_guards/auth-guard.service';
 import { LoginComponent } from './login/index';
+
 import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 import { routing } from './app.routing';
 import { BsNavbarComponent } from './_layout/bs-navbar/bs-navbar.component';
 import { WorkOrderService } from './_services/workorder.service';
+import { awsService } from './_services/aws.service';
+import { UsersService } from './_services/users.service';
 
 @NgModule({
  
@@ -42,10 +45,9 @@ import { WorkOrderService } from './_services/workorder.service';
     AppLayoutComponent,
     BsNavbarComponent
     
-    
   ],
   providers: [AuthService,
-              AuthGuard, WorkOrderService, CategoriesService, StatusService],
+              AuthGuard, WorkOrderService, CategoriesService, StatusService, awsService, UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

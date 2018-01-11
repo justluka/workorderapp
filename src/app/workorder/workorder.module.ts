@@ -3,10 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
  
 // containers
 import { WorkorderComponent } from './workorder.component';
+
 import { CommonModule } from '@angular/common';
 import {NgxPaginationModule} from 'ngx-pagination';
-
-
+import { FormsModule } from '@angular/forms';
+import { SearchPipe } from '../_pipes/search.pipe';
 
 // routes
 export const ROUTES: Routes = [
@@ -17,11 +18,10 @@ export const ROUTES: Routes = [
   imports: [
     RouterModule.forChild(ROUTES),
     CommonModule,
-    NgxPaginationModule
-
-  ],
+    NgxPaginationModule,FormsModule
+    ],
   declarations: [
-    WorkorderComponent
+    WorkorderComponent, SearchPipe
     
   ]
 })

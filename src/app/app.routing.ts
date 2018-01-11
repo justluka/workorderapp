@@ -16,9 +16,9 @@ const appRoutes: Routes = [
         children: [
           { path: 'home', loadChildren: './home/home.module#HomeModule', pathMatch: 'full'},
           { path: 'workorder', loadChildren: './workorder/workorder.module#WorkorderModule', pathMatch: 'full'},
-          { path: 'addWorkOrder', loadChildren: './workorder/workorder-form/workorder-form.module#WorkorderFormModule', pathMatch: 'full'}
-         
-                    
+          { path: 'addWorkOrder', loadChildren: './workorder/workorder-form/workorder-form.module#WorkorderFormModule', pathMatch: 'full'},
+          { path: 'addWorkOrder/:id', loadChildren: './workorder/workorder-form/workorder-form.module#WorkorderFormModule', pathMatch: 'full'},
+                      
         ]
     },
    

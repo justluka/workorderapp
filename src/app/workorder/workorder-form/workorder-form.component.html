@@ -1,18 +1,29 @@
-<form #f="ngForm" (ngSubmit)="save(f.value)"  class="form-margin ">
+
+<div style="text-align:right">
+    <button type="button"  routerLink="/workorder" [queryParams]="{page: 'workorder' }" class="btn btn-primary btn-sm">
+      <span class="glyphicon glyphicon-circle-arrow-left"></span> Back to Work Orders
+    </button>
+</div> 
+
+<br>
+
+<form #f="ngForm" (ngSubmit)="save(f.value, $event)"  class="form-margin ">
  
   <div class="row"  >
     <div class="col-md-8">
-      <h3 class="title">Creating a new Work Order</h3>
+      <h3 class="title">{{title}}</h3>
       <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
     </div>  
   </div>  
   <br>
+  <input #workOrderID="ngModel" [(ngModel)]="workorder.WorkOrderID"  name="workOrderID" id="workOrderID" type="hidden" class="form-control">
+
   <!-- Status -->
   <div class="row"  >
     <div class="form-group col-md-8">
         <label for="status">Status</label>
 
-        <select #status="ngModel" [(ngModel)]="workorder.status" name="status" id="status" class="form-control" required>
+        <select #status="ngModel" [(ngModel)]="workorder.StatusID" name="status" id="status" class="form-control" required>
             <option [value]="selectUndefinedOptionValue" disabled hidden >Choose one ...</option>
             <option *ngFor="let c of lstStatus$" [ngValue]="c.StatusID">
             {{ c.Status }}
@@ -33,7 +44,7 @@
       <div class="form-group col-md-8">
           <label for="category">Category</label>
 
-          <select #category="ngModel" [(ngModel)]="workorder.category" name="category" id="category" class="form-control" required>
+          <select #category="ngModel" [(ngModel)]="workorder.CategoryID" name="category" id="category" class="form-control" required>
               <option [value]="selectUndefinedOptionValue" disabled hidden >Choose one ...</option>
               <option *ngFor="let c of lstCategories$" [ngValue]="c.CategoryID">
               {{ c.Category }}
@@ -53,7 +64,7 @@
       <div class="form-group col-md-8">
           <label for="description">Description</label>
 
-          <textarea #description="ngModel" [(ngModel)]="workorder.description" name="description" id="description"  rows="6"  class="form-control" required></textarea>
+          <textarea #description="ngModel" [(ngModel)]="workorder.Description" name="description" id="description"  rows="6"  class="form-control" required></textarea>
 
           <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
                 Description is required.
@@ -64,20 +75,22 @@
   
   <!-- Document -->
   <div class="row"  >
-      <div class="form-group col-md-8">
+      <div class="form-group col-md-8" >
           <label for="category">Document</label><br>
-          <input type="file"  #document="ngModel" 
-                [(ngModel)]="workorder.document"
-                name="document" id="document"
-           class="form-control file-preview-filename btn-file" accept="application/pdf">
-      </div>    
+                          
+          <label for="toUpload"><span class="titleDoc">{{fileName}}</span></label><br>
+            <div class="form-group files fileUpload" >
+              <input type="file"  
+              (change)="onFileChange($event)" 
+               accept="application/pdf" >            </div>      
+         
   </div>
+</div>
+<input #signedUrl="ngModel" [(ngModel)]="workorder.SignedUrl"  name="signedUrl" id="signedUrl" type="hidden" class="form-control">
+<input #document="ngModel" [(ngModel)]="workorder.Document"  name="document" id="document" type="hidden" class="form-control">
+
   <!-- End Document -->
-  
-
-  
   <br>
-
   <!-- Signed Date, Started Date -->
 
   <div class="row"  >
@@ -86,7 +99,7 @@
           <div class="input-group">
             <input type="text"
                     #signedDate="ngModel" 
-                    [(ngModel)]="workorder.signedDate"
+                    [(ngModel)]="workorder.SignedDate"
                     name="signedDate"
                     id="signedDate" 
                     class="form-control"                
@@ -107,7 +120,7 @@
             <input type="text"
                     class="form-control"
                     #startedDate="ngModel" 
-                    [ngModel]="workorder.startedDate"
+                    [ngModel]="workorder.DateStarted"
                     name="startedDate"
                     id="startedDate" 
                     #dpStarted="bsDatepicker"
@@ -133,7 +146,7 @@
           <input type="text"
                   class="form-control"
                   #CompletedDate="ngModel" 
-                  [(ngModel)]="workorder.completedDate"
+                  [(ngModel)]="workorder.DateCompleted"
                   name="completedDate"
                   id="completedDate" 
                   #dpCompleted="bsDatepicker"
@@ -153,7 +166,7 @@
           <input type="text"
                   class="form-control"  
                   #ReleasedTestDate="ngModel" 
-                  [(ngModel)]="workorder.releasedTestDate"
+                  [(ngModel)]="workorder.ReleasedTestingDate"
                   name="releasedTestDate"
                   id="releasedTestDate"               
                   #dpReleasedTest="bsDatepicker"
@@ -175,7 +188,7 @@
             <input type="text"
                     class="form-control"
                     #ReleasedProductionDate="ngModel" 
-                    [(ngModel)]="workorder.releasedProductionDate"
+                    [(ngModel)]="workorder.ReleasedProductionDate"
                     name="releasedProductionDate"
                     id="releasedProductionDate"                    
                     #dpReleasePro="bsDatepicker"
@@ -198,7 +211,7 @@
           <label for="propouseHours">Propouse Hours</label>
           <div class="input-group">
             <span class="input-group-addon">Hours</span>
-            <input #propouseHours="ngModel" [(ngModel)]="workorder.propouseHours" name="propouseHours" id="propouseHours" type="number" class="form-control"  [min]="1">
+            <input #propouseHours="ngModel" [(ngModel)]="workorder.PropouseHours" name="propouseHours" id="propouseHours" type="number" class="form-control"  [min]="1">
           </div>
           <div class="alert alert-danger" *ngIf="propouseHours.touched && propouseHours.invalid">           
             <div *ngIf="propouseHours.errors.min">Propouse Hours should be 1 or higher.</div>
@@ -209,7 +222,7 @@
             <label for="actualHours">Actual Hours</label>
             <div class="input-group">
               <span class="input-group-addon">Hours</span>
-              <input #actualHours="ngModel" [(ngModel)]="workorder.actualHours" name="actualHours" id="actualHours" type="number" class="form-control" required [min]="1">
+              <input #actualHours="ngModel" [(ngModel)]="workorder.ActualHours" name="actualHours" id="actualHours" type="number" class="form-control" required [min]="1">
             </div>
             <div class="alert alert-danger" *ngIf="actualHours.touched && actualHours.invalid">              
               <div *ngIf="actualHours.errors.min">Actual Hours should be 1 or higher.</div>
@@ -218,68 +231,53 @@
     
   </div>
   <!-- End Propoused Hours, actual Hours -->
+  <br>
+  <h3>RESOURCES</h3>
+  <!-- Resources -->
+  <span> * Click on the name to add/remove resourses to this work order</span>
+  <div class="row"  >
+      <div class="form-group  col-md-4">
+          <label for="propouseHours">All resourses availables</label>
+          
+          <div class="list">
+            <ul>
+              <li *ngFor="let user of lstUsers$; let i = index" [class.selected]="i === selectedRow">          
+                <span (click)="addUserToList(user)">{{ user.Name }}  </span>       
+                
+              </li>
+            </ul>
+          </div>
+         
+        </div>        
+        
+        <div class="form-group  col-md-4">
+            <label for="actualHours">Resources for this work order</label>  
+            <div class="list">
+              <ul>
+                <li *ngFor="let user of userList; let i = index">          
+                  <span (click)="removeUserFromList(user)">{{ user.Name }}  </span>       
+                  
+                </li>
+              </ul>
+            </div>
+        </div>        
+    
+  </div>
+  <!-- End Resources -->
+
+
+
+
   <!-- Button to save -->
   <div class="row"  >
             
     <div class="form-group  col-md-8" style="text-align:right">
         <br>
         <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
-        <button class="btn btn-primary" [disabled]="!f.valid">Save</button>        
+        <button class="btn btn-primary" [disabled]="!f.valid">
+            <span class="glyphicon glyphicon-floppy-disk"></span> Save</button>        
     </div>
   </div>  
-  
+  <!-- End Button to save -->
+
 </form>
-
-
-  <!-- /input-group image-preview [TO HERE]--> 
-<!--
-<div class="row">
-  <div class="col-md-6">
-    <form #f="ngForm" (ngSubmit)="save(f.value)">
-    
-
-        <div class="form-group">
-          <label for="title">Title</label>
-          <input #title="ngModel" [(ngModel)]="product.title" name="title" id="title" type="text" class="form-control" required>
-          <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
-            Title is required.
-          </div>
-        </div>        
-        <div class="form-group">
-          <label for="price">Price</label>
-          <div class="input-group">
-            <span class="input-group-addon">$</span>
-            <input #price="ngModel" [(ngModel)]="product.price" name="price" id="price" type="number" class="form-control" required [min]="0">
-          </div>
-          <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
-            <div *ngIf="price.errors.required">Price is required.</div>
-            <div *ngIf="price.errors.min">Price should be 0 or higher.</div>
-          </div>
-        </div>        
-        <div class="form-group">
-          <label for="category">Category</label>
-          <select #category="ngModel" [(ngModel)]="product.category" name="category" id="category" class="form-control" required>
-            <option value=""></option>
-            <option *ngFor="let c of categories$ | async" [value]="c.$key">
-              {{ c.name }}
-            </option>
-          </select>
-          <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
-            Category is required.
-          </div>
-        </div>        
-        <div class="form-group">
-          <label for="imageUrl">Image URL</label>
-          <input #imageUrl="ngModel" [(ngModel)]="product.imageUrl" name="imageUrl" id="imageUrl" type="text" class="form-control" required url>
-          <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
-            <div *ngIf="imageUrl.errors.required">Image URL is required.</div>
-            <div *ngIf="imageUrl.errors.url">Please enter a valid URL.</div>
-          </div>
-        </div>  
-        <button class="btn btn-primary">Save</button>
-        <button type="button" (click)="delete()" class="btn btn-danger">Delete</button>
-      </form>    
-  </div>
-  
-</div>
--->

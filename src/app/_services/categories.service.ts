@@ -28,4 +28,15 @@ export class CategoriesService{
     }
 
 
+    getAllCategoriesWithWO () {
+        let headers = new Headers({'Content-Type': 'application/json'});        
+        let options = new RequestOptions({ headers: headers });
+            options.headers.append('x-access-token',sessionStorage.getItem('token'));
+   
+         return this.http.get(this.serverurl+'api/categories/workorders',options )
+         .map((response: Response) => 
+             response.json()     
+         );
+     }
+
 }

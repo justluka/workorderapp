@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoriesService } from './../_services/categories.service';
 
 @Component({
   moduleId : module.id,
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  //list from the DB
+  lstCategories$;
+  CategoryID="probando";
+
+  constructor(private CategoriesService: CategoriesService) {
+      this.getCategories();
+
+   }
 
   ngOnInit() {
   }
+
+  /************** Getting data from DB  **************/
+  getCategories(){
+    this.CategoriesService.getAllCategoriesWithWO().subscribe(data=>{    
+      this.lstCategories$ = data.response[0];         
+     });
+     
+  }
+  /**************End Getting data from DB  **************/
 
 }

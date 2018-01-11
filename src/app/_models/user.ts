@@ -1,7 +1,6 @@
 export class user {
-    userName: string;
+    userName: string;		     
     role: string;
     isAdmin: boolean;
-    token: string;
-
-}
+    token: string;		     
+} 		  

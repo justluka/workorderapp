@@ -1,21 +1,18 @@
-
-
-<div style="text-align:right">
-    <button type="button"  routerLink="/addWorkOrder" [queryParams]="{page: 'workorder' }" class="btn btn-primary btn-sm">
-      <span class="glyphicon glyphicon-plus"></span> Add New
-    </button>
-</div> 
-<br>
 <div class="form-group">
-    <div class="col-md-6 input-group" >
-      <span class="input-group-addon">
-          <span class="glyphicon glyphicon-search"></span>
-      </span>
+    <div class="col-md-6" >
       <input type="text" [(ngModel)]="query" 
              class="form-control" placeholder="Search Work Order" />
     </div>
   </div>
 
+  <br>
+<div style="text-align:right">
+    <button type="button"  routerLink="/addWorkOrder" [queryParams]="{page: 'workorder' }" class="btn btn-primary btn-sm">
+      <span class="glyphicon glyphicon-plus"></span> Add New
+    </button>
+</div> 
+
+<br>
 
 
   
@@ -31,12 +28,14 @@
       <th style="text-align: center">Edit</th>
       <th style="text-align: center">Delete</th>
       <th style="text-align: center">View Complete</th>
-      <th style="text-align: center">Document</th>
 
+
+
+      <th></th>
     </tr>
   </thead> 
   <tbody>
-    <tr *ngFor="let workorder of (lstWorkOrder$ | search:'WorkOrderID,Category,Description,Status,Notes':query | paginate: { itemsPerPage: 5, currentPage: p }) let i = index;  ">
+    <tr *ngFor="let workorder of (lstWorkOrder$ | paginate: { itemsPerPage: 5, currentPage: p }) let i = index;  ">
       <td>{{ workorder.WorkOrderID }}</td>
       <td>{{ workorder.Category }}</td>
       <td>{{ workorder.Description }}</td>
@@ -47,20 +46,16 @@
       </td>
 
       <td style="text-align: center">        
-          <a href="#" (click)="deleteWorkOrder(workorder.WorkOrderID,i, workorder.Document)" ><span class="glyphicon glyphicon-trash"></span></a>
-      </td>
+          <a (click)="deleteWorkOrder(workorder.WorkOrderID,i, workorder.Document)" ><span class="glyphicon glyphicon-trash"></span></a>
+        </td>
      
       <td style="text-align: center">
           <a href="#" ><span class="glyphicon glyphicon-zoom-in"></span></a>
       </td>
 
-      <td style="text-align: center">        
-          <a *ngIf="workorder.Document" (click)="downloadFile(workorder.Document)"   target="_blank"  download="document"><span class="glyphicon glyphicon-download-alt"></span></a>
-      </td>
-
     </tr>
     <tr>
-      <td colspan="9"><pagination-controls (pageChange)="p = $event"></pagination-controls></td>
+      <td colspan="6"><pagination-controls (pageChange)="p = $event"></pagination-controls></td>
     </tr>
   </tbody> 
 </table>

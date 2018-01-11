@@ -1,3 +1,41 @@
-<p>
-  home works!
-</p>
+
+
+<br>
+<div class="row">
+    <ng-container *ngFor="let c of lstCategories$; let i = index">
+
+    <div class="col-md-5 "  style="width:50%" *ngIf="(i ) % 2 === 0" >
+            <div class="panel panel-info">
+                
+                <div class="panel-heading" style="font-weight: bold;font-size:18px;">
+                    <span class="glyphicon glyphicon-tasks" ></span> 
+                    &nbsp;{{c.Category}}
+                </div>
+                
+                <div class="panel-body" style="padding-left: 10%; padding-right:10%">
+                        <status-card [CategoryID]="c.CategoryID" ></status-card>
+
+                </div>
+          </div>
+              
+    </div>
+
+    <div class="col-md-5" style="width:50%" *ngIf="(i ) % 2 != 0" >
+            <div class="panel panel-info">
+                
+                    <div class="panel-heading" style="font-weight: bold;font-size:18px;">
+                        <span class="glyphicon glyphicon-tasks"></span> 
+                        &nbsp;{{c.Category}}
+                    </div>
+                    
+                    <div class="panel-body" style="padding-left: 10%; padding-right:10%">
+                            <status-card [CategoryID]="c.CategoryID"  ></status-card>
+                    </div>
+              </div>
+    </div>
+        
+  </ng-container>
+  </div>
+  <br>
+  
+  

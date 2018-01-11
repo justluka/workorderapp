@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
         .subscribe(userInfo=>{
           
           if(userInfo.token){  
-            console.log(this.returnUrl);          
             this.router.navigate([this.returnUrl]);
             this.isNotLogged = false;
             
