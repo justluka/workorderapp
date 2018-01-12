@@ -25,8 +25,7 @@
     <tr class="bg-info">
       <th >#</th>
       <th>Category</th>
-      <th>Description</th>
-      <th>Notes</th>
+      <th style="width: 60%">Description</th>
       <th>Status</th>
       <th style="text-align: center">Edit</th>
       <th style="text-align: center">Delete</th>
@@ -40,7 +39,6 @@
       <td>{{ workorder.WorkOrderID }}</td>
       <td>{{ workorder.Category }}</td>
       <td>{{ workorder.Description }}</td>
-      <td>{{ workorder.Notes}}</td>
       <td>{{ workorder.Status}}</td>
       <td style="text-align: center">        
           <a href="#" [routerLink]="['/addWorkOrder', workorder.WorkOrderID]"><span class="glyphicon glyphicon-pencil"></span></a>

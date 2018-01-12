@@ -2,9 +2,9 @@
 
 <br>
 <div class="row">
-    <ng-container *ngFor="let c of lstCategories$; let i = index">
+    <ng-container *ngFor="let c of lstCategories$; let i = index" >
 
-    <div class="col-md-5 "  style="width:50%" *ngIf="(i ) % 2 === 0" >
+    <div class="col-md-5 "  *ngIf="(i ) % 2 === 0"  style="padding-left: 150px">
             <div class="panel panel-info">
                 
                 <div class="panel-heading" style="font-weight: bold;font-size:18px;">
@@ -20,7 +20,7 @@
               
     </div>
 
-    <div class="col-md-5" style="width:50%" *ngIf="(i ) % 2 != 0" >
+    <div class="col-md-5" *ngIf="(i ) % 2 != 0" style="padding-left: 150px" >
             <div class="panel panel-info">
                 
                     <div class="panel-heading" style="font-weight: bold;font-size:18px;">
@@ -29,7 +29,7 @@
                     </div>
                     
                     <div class="panel-body" style="padding-left: 10%; padding-right:10%">
-                            <status-card [CategoryID]="c.CategoryID"  ></status-card>
+                            <status-card [CategoryID]="c.CategoryID" ></status-card>
                     </div>
               </div>
     </div>
