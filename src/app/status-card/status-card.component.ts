@@ -39,10 +39,6 @@ export class StatusCardComponent implements OnInit {
      }  
 
      this.chart.chart.config.data.labels = labels;
-     this.chart.chart.config.data.options = {				showAllTooltips: true
-
-     };
-
      this.pieChartData=total;
 
 
