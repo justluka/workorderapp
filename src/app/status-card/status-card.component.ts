@@ -1,5 +1,7 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,ViewChild } from '@angular/core';
 import { WorkOrderService } from './../_services/workorder.service';
+import { BaseChartDirective, Color } from 'ng2-charts';
+
 
 @Component({
   selector: 'status-card',
@@ -7,33 +9,48 @@ import { WorkOrderService } from './../_services/workorder.service';
   styleUrls: ['./status-card.component.css']
 })
 export class StatusCardComponent implements OnInit {
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective;
+
   lstWorkOrderStatus$=[];
   total:number=0;
-  public pieChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
-  public pieChartData:number[] = [300, 500, 100];
-  public pieChartType:string = 'pie'
+  pieChartLabels:Array<any>=[];
+  pieChartData:Array<any>=[];
+  public colors: Array<Color> = [{ backgroundColor:['yellow', 'green', 'blue', 'red', 'Purple', 'Orange'],  borderColor: '#1D871B'}];
+   chartOptions = { responsive: true, tooltips: { mode: 'index', intersect: false } };
+
+  pieChartType:string = 'pie'
 
   @Input('CategoryID') CategoryID:number;
 
   constructor(private WorkOrderService: WorkOrderService) { 
-  
+
   }
 
   ngOnInit() {
     this.WorkOrderService.getWorkOrdersByCategory(this.CategoryID).subscribe(data=>{
       this.lstWorkOrderStatus$= data.response;
+      let labels:Array<string>=[];
+      let total=[];
 
       for(let item of this.lstWorkOrderStatus$){
-        console.log(item);
         this.total = this.total + item.Total;
+        labels.push(item.Status);
+        total.push(item.Total);
      }  
+
+     this.chart.chart.config.data.labels = labels;
+     this.chart.chart.config.data.options = {				showAllTooltips: true
+
+     };
+
+     this.pieChartData=total;
+
 
      });
    
      
   
   }
-
 
   // chart events
   public chartClicked(e:any):void {
