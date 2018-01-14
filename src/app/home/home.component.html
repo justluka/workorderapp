@@ -1,10 +1,10 @@
 
 
 <br>
-<div class="row">
-    <ng-container *ngFor="let c of lstCategories$; let i = index" >
+<div class="row" >
+    <ng-container *ngFor="let c of lstCategories$; let i = index" style="text-align:center">
 
-    <div class="col-md-5 "  *ngIf="(i ) % 2 === 0"  style="padding-left: 150px">
+    <div class="col-md-6"  *ngIf="(i ) % 2 === 0"  >
             <div class="panel panel-info">
                 
                 <div class="panel-heading" style="font-weight: bold;font-size:18px;">
@@ -12,7 +12,7 @@
                     &nbsp;{{c.Category}}
                 </div>
                 
-                <div class="panel-body" style="padding-left: 10%; padding-right:10%">
+                <div class="panel-body" style="padding-left: 10%; ">
                         <status-card [CategoryID]="c.CategoryID" ></status-card>
 
                 </div>
@@ -20,15 +20,15 @@
               
     </div>
 
-    <div class="col-md-5" *ngIf="(i ) % 2 != 0" style="padding-left: 150px" >
+    <div class="col-md-6" *ngIf="(i ) % 2 != 0">
             <div class="panel panel-info">
                 
-                    <div class="panel-heading" style="font-weight: bold;font-size:18px;">
+                    <div class="panel-heading" style="font-weight: bold;font-size:18px;"s>
                         <span class="glyphicon glyphicon-tasks"></span> 
                         &nbsp;{{c.Category}}
                     </div>
                     
-                    <div class="panel-body" style="padding-left: 10%; padding-right:10%">
+                    <div class="panel-body" style="padding-left: 10%; ">
                             <status-card [CategoryID]="c.CategoryID" ></status-card>
                     </div>
               </div>
