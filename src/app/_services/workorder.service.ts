@@ -27,6 +27,25 @@ export class WorkOrderService{
         );
     }
 
+    getMyWorkOrders () {
+        let user: string =sessionStorage.getItem('currentUser');
+
+        return this.http.get(this.serverurl+'api/workorders/myOrders/'+ user,this.options )
+        .map((response: Response) => 
+            response.json()     
+        );
+    }
+
+    getAllArchivedWorkOrders () {
+      
+        return this.http.get(this.serverurl+'api/workorders/getArchived',this.options )
+        .map((response: Response) => 
+            response.json()     
+        );
+    }
+
+
+
     getWorkOrderByID (workOrderID) {
          
         return this.http.get(this.serverurl+'api/workorders/' + workOrderID,this.options )
@@ -86,6 +105,15 @@ export class WorkOrderService{
     response.json()     
     );
    }
+
+
+   activateWorkOrder (workorder){
+    return this.http.put(this.serverurl+'api/workorder/activate',workorder,this.options )
+    .map((response: Response) => 
+    response.json()     
+    );
+   }
+
 
     addResources (WorkOrderID, UserName){
         return this.http.post(this.serverurl+'api/workorder/addResources',{WorkOrderID: WorkOrderID, UserName: UserName},this.options )

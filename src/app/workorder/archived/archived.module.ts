@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
  
 // containers
-import { WorkorderComponent } from './workorder.component';
+import { ArchivedComponent } from './archived.component';
 
 import { CommonModule } from '@angular/common';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
-import { SharedPipeModule } from '../_pipes/sharedPipe.module';
+import { SharedPipeModule } from '../../_pipes/sharedPipe.module';
 
 // routes
 export const ROUTES: Routes = [
-  { path: '', component: WorkorderComponent }
+  { path: '', component: ArchivedComponent }
 ];
  
 @NgModule({
@@ -21,8 +21,8 @@ export const ROUTES: Routes = [
     NgxPaginationModule,FormsModule,SharedPipeModule
     ],
   declarations: [
-    WorkorderComponent
+    ArchivedComponent
     
   ]
 })
-export class WorkorderModule {}
+export class ArchivedModule {}

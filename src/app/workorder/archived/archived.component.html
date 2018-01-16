@@ -1,0 +1,66 @@
+
+
+<div style="text-align:right">
+  <button type="button"  routerLink="/addWorkOrder" [queryParams]="{page: 'workorder' }" class="btn btn-primary btn-sm">
+    <span class="glyphicon glyphicon-plus"></span> Add New
+  </button>
+</div> 
+<br>
+<div class="form-group">
+  <div class="col-md-6 input-group" >
+    <span class="input-group-addon">
+        <span class="glyphicon glyphicon-search"></span>
+    </span>
+    <input type="text" [(ngModel)]="query" 
+           class="form-control" placeholder="Search Work Order" />
+  </div>
+</div>
+
+
+
+
+
+<table class="table table-hover   table-condensed table-sortable">
+<thead class="thead-dark" >
+  <tr class="bg-info">    
+    <th >Order#</th>
+    <th>Category</th>
+    <th style="width: 50%">Title</th>
+    <th>Status</th>
+    <th style="text-align: center">Activate Work order</th>
+    <th style="text-align: center">View Complete</th>
+    <th style="text-align: center">Document</th>
+
+  </tr>
+</thead> 
+<tbody>
+  <tr *ngFor="let workorder of (lstWorkOrder$ | search:'WorkOrderID,Category,Title,Status':query | paginate: { itemsPerPage: 10, currentPage: p }) let i = index;  ">   
+    <td>{{ workorder.WorkOrderID }}</td>
+    <td>{{ workorder.Category }}</td>
+    <td>{{ workorder.Title }}</td>
+    <td>{{ workorder.Status}}</td>
+
+    <td style="text-align: center">                
+        <a  (click)="activateWorkOrder(workorder)" ><span class="glyphicon glyphicon-folder-open"></span></a>
+
+    </td>
+   
+    <td style="text-align: center">
+        <a href="#" ><span class="glyphicon glyphicon-zoom-in"></span></a>
+    </td>
+
+    <td style="text-align: center">        
+        <a *ngIf="workorder.Document" (click)="downloadFile(workorder.Document)"   target="_blank"  download="document"><span class="glyphicon glyphicon-download-alt"></span></a>
+    </td>
+
+  </tr>
+  <tr>
+    <td colspan="9"><pagination-controls (pageChange)="p = $event"></pagination-controls></td>
+  </tr>
+  <tr >
+    <td>{{total}}</td>
+  </tr>
+</tbody> 
+</table>
+
+<br>

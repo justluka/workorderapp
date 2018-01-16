@@ -13,12 +13,19 @@
         <div class="list-group">
             <a (click)="changePageName('Work Orders')"  routerLink="/workorder" [queryParams]="{page: 'workorder' }" [class.active]="page==='workorder'"  class="list-group-item list-group-item-action" >
               <span class="glyphicon glyphicon-file text-info"></span>
-              Work Orders
+              &nbsp; Work Orders
             </a>                  
-            <a (click)="changePageName('Tracking Work Order')"  routerLink="/TWO" [queryParams]="{page: 'TWO' }" [class.active]="page==='TWO'"  class="list-group-item list-group-item-action">
-              <span class="glyphicon glyphicon-flash text-info"></span>
-              Tracking Work Order
+
+            <a (click)="changePageName('My Work Orders')"  routerLink="/myWorkOrders" [queryParams]="{page: 'myWorkOrders', filter:'myorders' }" [class.active]="page==='myWorkOrders'"  class="list-group-item list-group-item-action">
+              <span class="glyphicon glyphicon-duplicate text-info"></span>
+              &nbsp; My Work Orders
             </a>
+          
+            <a (click)="changePageName('Archived Work Orders')"  routerLink="/archiveWorkOrder" [queryParams]="{page: 'archiveWorkOrder' }" [class.active]="page==='archiveWorkOrder'"  class="list-group-item list-group-item-action">
+              <span class="glyphicon glyphicon-folder-open text-info"></span>
+              &nbsp; Archive Work Orders
+            </a>
+           
             <a (click)="changePageName('Dashboard')"  routerLink="/home" [queryParams]="{page: 'home' }" [class.active]="page==='home'"  class="list-group-item list-group-item-action">
               <span class="glyphicon glyphicon-stats text-info"></span>
               Dashboard

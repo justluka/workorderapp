@@ -20,25 +20,56 @@ export class WorkorderComponent implements OnInit {
   lstWorkOrder$;
   query='';
   p: number=1;
+  total;
+  filter:string;
+  readonly="false";
 
   constructor(private WorkOrderService: WorkOrderService,  
               private awsService: awsService,
-              private router:Router
+              private router:Router,
+              private route:ActivatedRoute
             ) {
 
+              route.queryParamMap.subscribe(params=>{
+                this.filter = params.get('filter');      
+              })
+                
    
    }
 
   ngOnInit() {
-    this.getData();
+  
+    this.getData();  
   }
 
   getData(){
+
+    if(this.filter==="myorders"){
+      this.getMyWorkOrders();
+     // this.readonly="true";
+
+    }
+    else{
+      //this.readonly="false";
+      this.getAllWorkOrders();
+    }
+  }
+
+  getAllWorkOrders(){
      this.WorkOrderService.getAllWorkOrders().subscribe(data=>{
       this.lstWorkOrder$ =data.response;
+      this.getTotal();
      });
 
   }
+
+  getMyWorkOrders(){
+    this.WorkOrderService.getMyWorkOrders().subscribe(data=>{
+     this.lstWorkOrder$ =data.response;
+     this.getTotal();
+    });
+
+ }
 
   deleteWorkOrder(id,index, document){
     console.log(id);
@@ -69,16 +100,30 @@ export class WorkorderComponent implements OnInit {
     });
   }
 
+  changePriority(priority, workOrder){
+    workOrder.Priority = priority;
+    //alert (wOrkorder.Priority);
+    this.WorkOrderService.updateWorkOrderPriority (workOrder)
+    .subscribe(success=>{
+      this.getData();
+    }) 
+
+  }
+
   archiveWorkOrder(workOrder){
     console.log(workOrder);
     if (!confirm('Are you sure you want to ARCHIVE this Work Order # ' + workOrder.WorkOrderID)) return;
 
     this.WorkOrderService.archiveWorkOrder (workOrder)
       .subscribe(success=>{
-        this.lstWorkOrder$ =success.response;
+        this.getData();
+        this.getTotal();
+
       }) 
   }
 
-
+ getTotal(){
+    this.total =this.lstWorkOrder$.length + ' Records were found.' ;
+  }
 
 }

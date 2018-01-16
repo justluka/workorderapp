@@ -17,9 +17,6 @@
   </div>
 
 
-
-  
-
 <table class="table table-hover   table-condensed table-sortable">
   <thead class="thead-dark" >
     <tr class="bg-info">
@@ -36,9 +33,9 @@
     </tr>
   </thead> 
   <tbody>
-    <tr *ngFor="let workorder of (lstWorkOrder$ | search:'WorkOrderID,Category,Description,Status,Notes':query | paginate: { itemsPerPage: 10, currentPage: p }) let i = index;  ">
+    <tr *ngFor="let workorder of (lstWorkOrder$ | search:'Priority,WorkOrderID,Category,Title,Status':query | paginate: { itemsPerPage: 10, currentPage: p }) let i = index;  ">
       <td>        
-        <input #priority name="priority" id="priority" (keyup.enter)="changePriority(priority.value, workorder);"   style="width:50px;" value="{{workorder.Priority}}" type="number">
+        <input #priority name="priority" id="priority" (keyup.enter)="changePriority(priority.value, workorder);" [disabled]="readonly"   style="width:50px;" value="{{workorder.Priority}}" type="number">
       </td>
       <td>{{ workorder.WorkOrderID }}</td>
       <td>{{ workorder.Category }}</td>
@@ -65,6 +62,9 @@
     </tr>
     <tr>
       <td colspan="9"><pagination-controls (pageChange)="p = $event"></pagination-controls></td>
+    </tr>
+    <tr >
+      <td>{{total}}</td>
     </tr>
   </tbody> 
 </table>
