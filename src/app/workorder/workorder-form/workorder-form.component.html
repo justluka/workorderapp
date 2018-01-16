@@ -11,7 +11,7 @@
  
   <div class="row"  >
     <div class="col-md-8">
-      <h3 class="title">{{title}}</h3>
+      <h3 class="title">{{titleForm}}</h3>
       <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
     </div>  
   </div>  
@@ -58,6 +58,22 @@
       
   </div>
   <!--End  Category -->
+
+
+  <!-- Title -->
+  <div class="row"  >
+    <div class="form-group col-md-8">
+        <label for="title">Title</label>
+
+        <input #title="ngModel" [(ngModel)]="workorder.Title" name="title" id="title"   class="form-control" required>
+
+        <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+              Title is required.
+        </div>
+    </div>    
+</div>
+<!-- End title -->
+
 
   <!-- Description -->
   <div class="row"  >

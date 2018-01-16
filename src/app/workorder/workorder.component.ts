@@ -23,7 +23,7 @@ export class WorkorderComponent implements OnInit {
 
   constructor(private WorkOrderService: WorkOrderService,  
               private awsService: awsService,
-              private router:Router, 
+              private router:Router
             ) {
 
    
@@ -41,7 +41,7 @@ export class WorkorderComponent implements OnInit {
   }
 
   deleteWorkOrder(id,index, document){
-
+    console.log(id);
     if (!confirm('Are you sure you want to delete this Work Order # ' + id)) return;
     this.WorkOrderService.deleteWorkOrder(id).subscribe(status=>
     {
@@ -49,15 +49,17 @@ export class WorkorderComponent implements OnInit {
       if (status===200 && document){
         this.deleteAWSFile(document);
       }
+      else
+        console.log(status);
     })
-    this.lstWorkOrder$.splice(index, 1);
+    this.getData();
   }
 
  
 
   deleteAWSFile(fileName){
     this.awsService.deleteFileAWS(fileName).subscribe(info=>{     
-      console.log(info);   
+      //this.lstWorkOrder$ =info.response;
     });
   }  
 
@@ -66,4 +68,17 @@ export class WorkorderComponent implements OnInit {
       window.open(info);       
     });
   }
+
+  archiveWorkOrder(workOrder){
+    console.log(workOrder);
+    if (!confirm('Are you sure you want to ARCHIVE this Work Order # ' + workOrder.WorkOrderID)) return;
+
+    this.WorkOrderService.archiveWorkOrder (workOrder)
+      .subscribe(success=>{
+        this.lstWorkOrder$ =success.response;
+      }) 
+  }
+
+
+
 }

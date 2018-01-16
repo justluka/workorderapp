@@ -66,11 +66,25 @@ export class WorkOrderService{
          );
     }
 
-    updateWorkOrder (workorder){
-        return this.http.put(this.serverurl+'api/workorder/edit',workorder,this.options )
+    updateWorkOrderPriority (workorder){
+        return this.http.put(this.serverurl+'api/workorder/editPriority',workorder,this.options )
         .map((response: Response) => 
         response.json()     
         );
+   }
+
+   updateWorkOrder (workorder){
+    return this.http.put(this.serverurl+'api/workorder/edit',workorder,this.options )
+    .map((response: Response) => 
+    response.json()     
+    );
+   }
+
+   archiveWorkOrder (workorder){
+    return this.http.put(this.serverurl+'api/workorder/archive',workorder,this.options )
+    .map((response: Response) => 
+    response.json()     
+    );
    }
 
     addResources (WorkOrderID, UserName){
@@ -95,6 +109,7 @@ export class WorkOrderService{
         this.options.search.set("id", id);
         return this.http.delete(this.serverurl+'api/workorder/delete/'+id,this.options )
         .map((response: Response) => {
+            console.log(response);
             let result = response.status;
             return result;       
         }

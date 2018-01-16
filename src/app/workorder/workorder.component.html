@@ -23,29 +23,35 @@
 <table class="table table-hover   table-condensed table-sortable">
   <thead class="thead-dark" >
     <tr class="bg-info">
-      <th >#</th>
+      <th >Priority</th>
+      <th >Order#</th>
       <th>Category</th>
-      <th style="width: 60%">Description</th>
+      <th style="width: 50%">Title</th>
       <th>Status</th>
       <th style="text-align: center">Edit</th>
-      <th style="text-align: center">Delete</th>
+      <th style="text-align: center">Delete/Archive</th>
       <th style="text-align: center">View Complete</th>
       <th style="text-align: center">Document</th>
 
     </tr>
   </thead> 
   <tbody>
-    <tr *ngFor="let workorder of (lstWorkOrder$ | search:'WorkOrderID,Category,Description,Status,Notes':query | paginate: { itemsPerPage: 5, currentPage: p }) let i = index;  ">
+    <tr *ngFor="let workorder of (lstWorkOrder$ | search:'WorkOrderID,Category,Description,Status,Notes':query | paginate: { itemsPerPage: 10, currentPage: p }) let i = index;  ">
+      <td>        
+        <input #priority name="priority" id="priority" (keyup.enter)="changePriority(priority.value, workorder);"   style="width:50px;" value="{{workorder.Priority}}" type="number">
+      </td>
       <td>{{ workorder.WorkOrderID }}</td>
       <td>{{ workorder.Category }}</td>
-      <td>{{ workorder.Description }}</td>
+      <td>{{ workorder.Title }}</td>
       <td>{{ workorder.Status}}</td>
       <td style="text-align: center">        
           <a href="#" [routerLink]="['/addWorkOrder', workorder.WorkOrderID]"><span class="glyphicon glyphicon-pencil"></span></a>
       </td>
 
       <td style="text-align: center">        
-          <a href="#" (click)="deleteWorkOrder(workorder.WorkOrderID,i, workorder.Document)" ><span class="glyphicon glyphicon-trash"></span></a>
+          <a  (click)="deleteWorkOrder(workorder.WorkOrderID,i, workorder.Document)" ><span class="glyphicon glyphicon-trash"></span></a> &nbsp; / &nbsp;
+          <a  (click)="archiveWorkOrder(workorder)" ><span class="glyphicon glyphicon-folder-open"></span></a>
+
       </td>
      
       <td style="text-align: center">

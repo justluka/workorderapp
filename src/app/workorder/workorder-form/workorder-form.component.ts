@@ -30,7 +30,7 @@ export class WorkorderFormComponent implements OnInit {
 
   
   //Global Variables
-  title: string='Creating a new Work Order';
+  titleForm: string='Creating a new Work Order';
   workOrderID;
 
   //config variables
@@ -75,7 +75,7 @@ export class WorkorderFormComponent implements OnInit {
          });  
          
          this.getResources();
-         this.title='Update Work Order';
+         this.titleForm='Update Work Order';
 
       }
    
@@ -219,12 +219,13 @@ export class WorkorderFormComponent implements OnInit {
 
 
   saveWorkOrder(workorder){
-    
     if(!this.workOrderID){ // Create if workOrderID is null
       this.WorkOrderService.saveWorkOrder(workorder)
       .subscribe(success=>{
   
           if(success.status===200 && this.userList.length>0){
+            console.log(success.response[0].WorkOrderID);
+
             //Work order saved ?  Save Resources
             this.addResourcesToWorkOrder(success.response[0].WorkOrderID);
 
