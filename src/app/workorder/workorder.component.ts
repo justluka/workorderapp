@@ -22,7 +22,7 @@ export class WorkorderComponent implements OnInit {
   p: number=1;
   total;
   filter:string;
-  readonly="false";
+  readonly="";
 
   constructor(private WorkOrderService: WorkOrderService,  
               private awsService: awsService,
@@ -46,11 +46,11 @@ export class WorkorderComponent implements OnInit {
 
     if(this.filter==="myorders"){
       this.getMyWorkOrders();
-     // this.readonly="true";
+      this.readonly="true";
 
     }
     else{
-      //this.readonly="false";
+      this.readonly="";
       this.getAllWorkOrders();
     }
   }

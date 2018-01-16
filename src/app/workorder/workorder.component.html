@@ -35,7 +35,7 @@
   <tbody>
     <tr *ngFor="let workorder of (lstWorkOrder$ | search:'Priority,WorkOrderID,Category,Title,Status':query | paginate: { itemsPerPage: 10, currentPage: p }) let i = index;  ">
       <td>        
-        <input #priority name="priority" id="priority" (keyup.enter)="changePriority(priority.value, workorder);" [disabled]="readonly"   style="width:50px;" value="{{workorder.Priority}}" type="number">
+        <input #priority name="priority" id="priority" (keyup.enter)="changePriority(priority.value, workorder);" [attr.disabled]="readonly?'':null"   style="width:50px;" value="{{workorder.Priority}}" type="number">
       </td>
       <td>{{ workorder.WorkOrderID }}</td>
       <td>{{ workorder.Category }}</td>
