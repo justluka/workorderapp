@@ -25,6 +25,7 @@ import { WorkOrderService } from './_services/workorder.service';
 import { awsService } from './_services/aws.service';
 import { UsersService } from './_services/users.service';
 
+
 @NgModule({
  
   imports: [
@@ -45,6 +46,7 @@ import { UsersService } from './_services/users.service';
     LoginComponent,
     AppLayoutComponent,
     BsNavbarComponent
+   
     
   ],
   providers: [AuthService,

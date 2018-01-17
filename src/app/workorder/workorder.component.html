@@ -50,10 +50,10 @@
           <a  (click)="archiveWorkOrder(workorder)" ><span class="glyphicon glyphicon-folder-open"></span></a>
 
       </td>
-     
-      <td style="text-align: center">
-          <a href="#" ><span class="glyphicon glyphicon-zoom-in"></span></a>
-      </td>
+    
+      <td style="text-align: center">        
+        <a href="#" [routerLink]="['/workorderDetail', workorder.WorkOrderID]"><span class="glyphicon glyphicon-zoom-in"></span></a>
+    </td>
 
       <td style="text-align: center">        
           <a *ngIf="workorder.Document" (click)="downloadFile(workorder.Document)"   target="_blank"  download="document"><span class="glyphicon glyphicon-download-alt"></span></a>

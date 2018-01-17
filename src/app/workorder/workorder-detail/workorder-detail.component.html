@@ -1,0 +1,87 @@
+
+    <div *ngFor="let workorder of workOrder$ ; let i = index;"   style="padding-left:10%; padding-right:10%" >
+     
+      
+        
+          <div class="row">
+              <div class="col-md-6" >
+                <p class="h2">WORK ORDER # &nbsp;&nbsp;&nbsp; {{ workorder.WorkOrderID }}
+
+                </p>
+              </div>
+
+              <div class="col-md-6" style="text-align: right; font-weight:bold;">                
+                <p class="h2 text-info">{{ workorder.Status }}</p>
+              </div>
+              <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+          </div>
+            
+          <div class="row">
+              <div class="col-md-2" >
+                  <span class="coTitle">Title: </span> &nbsp;
+                  
+              </div>
+
+              <div class="col-md-10" >                                
+                  <span class="info"> {{ workorder.Title }}</span>
+              </div>              
+          </div>
+           
+          <div class="row">
+              <div class="col-md-2" >
+                  <span class="coTitle">Category: </span> &nbsp;
+                  
+              </div>
+
+              <div class="col-md-10" >                                
+                  <span class="info"> {{ workorder.Category }}</span>
+              </div>              
+          </div>
+          <br>
+          <div class="row">
+              <div class="col-md-2" >
+                  <span class="coTitle">Description: </span> &nbsp;
+                  
+              </div>
+
+              <div class="col-md-10" >                                
+                  <span class="info"> {{ workorder.Description }}</span>
+              </div>              
+          </div>
+
+          <br>
+          <div class="row">
+              <div class="col-md-10" >
+                  <span class="info" style="text-decoration: underline;">IMPORTANT DATES </span> &nbsp;                  
+              </div>                     
+          </div>
+          <br>
+          <div class="row">
+              <div class="col-md-2" >
+                  <span class="coTitle">Signed Date: </span> &nbsp;
+                  
+              </div>
+
+              <div class="col-md-4" >                                
+                  <span class="info"> {{ workorder.SignedDate }}</span>
+              </div>              
+
+              <div class="col-md-2" >
+                  <span class="coTitle">Started Date: </span> &nbsp;
+                  
+              </div>
+
+              <div class="col-md-4" >                                
+                  <span class="info"> {{ workorder.DateStarted }}</span>
+              </div>        
+
+          </div>
+
+
+       
+
+        
+    </div>
+     
+    
+   

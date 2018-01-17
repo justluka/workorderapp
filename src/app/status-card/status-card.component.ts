@@ -48,9 +48,7 @@ export class StatusCardComponent implements OnInit {
 
     }else{
       this.WorkOrderService.getAllWorkOrdersByStatus().subscribe(data=>{
-        this.lstWorkOrderStatus$= data.response;
-        console.log('Vale verga');
-        console.log(data);
+        this.lstWorkOrderStatus$= data.response;       
         let labels:Array<string>=[];
         let total=[];
   
