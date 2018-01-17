@@ -59,7 +59,9 @@ export class WorkorderComponent implements OnInit {
      this.WorkOrderService.getAllWorkOrders().subscribe(data=>{
       this.lstWorkOrder$ =data.response;
       this.getTotal();
+
      });
+
 
   }
 

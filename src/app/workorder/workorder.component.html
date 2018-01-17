@@ -26,7 +26,7 @@
       <th style="width: 50%">Title</th>
       <th>Status</th>
       <th style="text-align: center">Edit</th>
-      <th style="text-align: center">Delete/Archive</th>
+      <th style="text-align: center">Delete / Archive</th>
       <th style="text-align: center">View Complete</th>
       <th style="text-align: center">Document</th>
 
@@ -46,7 +46,7 @@
       </td>
 
       <td style="text-align: center">        
-          <a  (click)="deleteWorkOrder(workorder.WorkOrderID,i, workorder.Document)" ><span class="glyphicon glyphicon-trash"></span></a> &nbsp; / &nbsp;
+          <a *ngIf="!readonly" (click)="deleteWorkOrder(workorder.WorkOrderID,i, workorder.Document)" ><span class="glyphicon glyphicon-trash" ></span></a> &nbsp; / &nbsp;
           <a  (click)="archiveWorkOrder(workorder)" ><span class="glyphicon glyphicon-folder-open"></span></a>
 
       </td>
@@ -64,7 +64,7 @@
       <td colspan="9"><pagination-controls (pageChange)="p = $event"></pagination-controls></td>
     </tr>
     <tr >
-      <td>{{total}}</td>
+      <td colspan="9">{{total}}</td>
     </tr>
   </tbody> 
 </table>

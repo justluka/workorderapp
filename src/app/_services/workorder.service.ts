@@ -27,6 +27,14 @@ export class WorkOrderService{
         );
     }
 
+    getAllWorkOrdersByStatus () {
+      
+        return this.http.get(this.serverurl+'api/ByStatus',this.options )
+        .map((response: Response) => 
+            response.json()     
+        );
+    }
+
     getMyWorkOrders () {
         let user: string =sessionStorage.getItem('currentUser');
 

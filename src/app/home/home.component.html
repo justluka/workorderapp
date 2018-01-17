@@ -1,6 +1,16 @@
+<h2>All work Orders</h2>
 
+<div class="row" >
+        <div class="col-md-3"   > &nbsp;
+        </div>        
+        <div class="col-md-6"   >
+                <status-card [CategoryID]="" ></status-card>
+        </div>       
+</div>
 
 <br>
+<h2>By Categories</h2>
+
 <div class="row" >
     <ng-container *ngFor="let c of lstCategories$; let i = index" style="text-align:center">
 

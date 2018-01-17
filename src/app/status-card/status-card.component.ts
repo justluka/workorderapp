@@ -27,22 +27,47 @@ export class StatusCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.WorkOrderService.getWorkOrdersByCategory(this.CategoryID).subscribe(data=>{
-      this.lstWorkOrderStatus$= data.response;
-      let labels:Array<string>=[];
-      let total=[];
 
-      for(let item of this.lstWorkOrderStatus$){
-        this.total = this.total + item.Total;
-        labels.push(item.Status);
-        total.push(item.Total);
-     }  
+    if(this.CategoryID){
+      this.WorkOrderService.getWorkOrdersByCategory(this.CategoryID).subscribe(data=>{
+        this.lstWorkOrderStatus$= data.response;
+        let labels:Array<string>=[];
+        let total=[];
+  
+        for(let item of this.lstWorkOrderStatus$){
+          this.total = this.total + item.Total;
+          labels.push(item.Status);
+          total.push(item.Total);
+       }  
+  
+       this.chart.chart.config.data.labels = labels;
+       this.pieChartData=total;
+  
+  
+       });
 
-     this.chart.chart.config.data.labels = labels;
-     this.pieChartData=total;
+    }else{
+      this.WorkOrderService.getAllWorkOrdersByStatus().subscribe(data=>{
+        this.lstWorkOrderStatus$= data.response;
+        console.log('Vale verga');
+        console.log(data);
+        let labels:Array<string>=[];
+        let total=[];
+  
+        for(let item of this.lstWorkOrderStatus$){
+          this.total = this.total + item.Total;
+          labels.push(item.Status);
+          total.push(item.Total);
+       }  
+  
+       this.chart.chart.config.data.labels = labels;
+       this.pieChartData=total;
+  
+  
+       });
 
-
-     });
+    }
+    
    
      
   

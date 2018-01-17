@@ -10,8 +10,6 @@ export class HomeComponent implements OnInit {
 
   //list from the DB
   lstCategories$;
-  CategoryID="probando";
-
   constructor(private CategoriesService: CategoriesService) {
       this.getCategories();
 
